@@ -1,0 +1,55 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Edit Location</h2>
+  <form (submit)="updateLocation()" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="locationName" class="form-label">Location Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="locationName"
+        [(ngModel)]="location.locationName"
+        name="locationName"
+        required
+      />
+      <div class="invalid-feedback">
+        Please enter the location name.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="locationDescription" class="form-label">Location Description</label>
+      <input
+        type="text"
+        class="form-control"
+        id="locationDescription"
+        [(ngModel)]="location.locationDescription"
+        name="locationDescription"
+        required
+      />
+      <div class="invalid-feedback">
+        Please enter a description for the location.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="stateID" class="form-label">State</label>
+      <select
+        class="form-control"
+        id="stateID"
+        [(ngModel)]="location.stateID"
+        name="stateID"
+        required
+      >
+        <option value="" disabled>Select a state</option>
+        <option *ngFor="let state of state" [value]="state.stateID">
+          {{ state.stateName }}
+        </option>
+      </select>
+      <div class="invalid-feedback">
+        Please select a state.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Location</button>
+  </form>
+</div>

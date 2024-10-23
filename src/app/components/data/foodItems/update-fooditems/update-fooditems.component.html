@@ -1,0 +1,64 @@
+<!-- Loading Spinner -->
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center vh-100">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<!-- Update Form -->
+<div *ngIf="!isLoading" class="container mt-5">
+  <h2 class="mb-4 text-center">Update Food Item</h2>
+
+  <form (ngSubmit)="updateFoodItem()" class="p-4 shadow-sm" style="background-color: #f8f9fa; border-radius: 8px;">
+    <!-- Item Name -->
+    <div class="mb-4">
+      <label for="itemName" class="form-label">Item Name</label>
+      <input 
+        type="text" 
+        id="itemName" 
+        class="form-control shadow-sm" 
+        [(ngModel)]="foodItem.itemName" 
+        name="itemName" 
+        required 
+        placeholder="Enter food item name"
+      />
+    </div>
+
+    <!-- Created At -->
+    <div class="mb-4">
+      <label for="createdAt" class="form-label">Created At</label>
+      <input 
+        type="date" 
+        id="createdAt" 
+        class="form-control shadow-sm" 
+        [(ngModel)]="foodItem.createdAt" 
+        name="createdAt" 
+        required 
+        readonly
+      />
+    </div>
+
+    <!-- Updated At -->
+    <div class="mb-4">
+      <label for="updatedAt" class="form-label">Updated At</label>
+      <input 
+        type="datetime-local" 
+        id="updatedAt" 
+        class="form-control shadow-sm" 
+        [(ngModel)]="foodItem.updatedAt" 
+        name="updatedAt" 
+        required
+      />
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary shadow-sm px-4">
+        <i class="bi bi-arrow-repeat"></i> Update Food Item
+      </button>
+      <a routerLink="/foodItems" class="btn btn-secondary shadow-sm px-4">
+        <i class="bi bi-x-circle"></i> Cancel
+      </a>
+    </div>
+  </form>
+</div>

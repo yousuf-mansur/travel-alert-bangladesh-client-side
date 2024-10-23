@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <h2>Delete Transport Provider</h2>
+  <p *ngIf="id !== null">Are you sure you want to delete the transport provider with ID: {{ id }}?</p>
+  <p *ngIf="id === null">Unable to determine the transport provider to delete. Please return to the previous page.</p>
+  
+  <div class="d-flex justify-content-between mt-4">
+    <button 
+      *ngIf="id !== null" 
+      class="btn btn-danger" 
+      (click)="deleteProvider()">
+      Delete
+    </button>
+  
+  </div>
+</div>

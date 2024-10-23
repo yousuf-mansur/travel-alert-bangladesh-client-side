@@ -1,0 +1,118 @@
+/* Container for the table and search box */
+.container {
+  margin: 20px auto;
+  max-width: 900px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the search box */
+input[type="text"] {
+  padding: 10px;
+  font-size: 1rem;
+  width: calc(100% - 120px);
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0px 2px 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Style for buttons */
+button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  border: none;
+}
+
+button.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3;
+  box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+button.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+button.btn-success:hover {
+  background-color: #218838;
+  box-shadow: 0px 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+button.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+button.btn-danger:hover {
+  background-color: #c82333;
+  box-shadow: 0px 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* Responsive table design */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+}
+
+.table thead {
+  background-color: #007bff;
+  color: white;
+}
+
+.table thead th {
+  padding: 10px;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table tbody td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+  background-color: #e6f7ff;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .table {
+    font-size: 0.9rem;
+  }
+  
+  input[type="text"] {
+    width: calc(100% - 60px);
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+}

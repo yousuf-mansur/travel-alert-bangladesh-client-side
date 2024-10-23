@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Create URL Service</h2>
+    
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="requestUrl">Select Request URL</label>
+            <select id="requestUrl" [(ngModel)]="selectedRequestUrlId" name="requestUrl" class="form-control" required>
+                <option *ngFor="let requestUrl of requestUrls" [value]="requestUrl.requestUrlId">
+                    {{ requestUrl.url }} ({{ requestUrl.urlName }})
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="currentUrl">Select Current URL</label>
+            <select id="currentUrl" [(ngModel)]="selectedCurrentUrlId" name="currentUrl" class="form-control" required>
+                <option *ngFor="let currentUrl of currentUrls" [value]="currentUrl.currentUrlId">
+                    {{ currentUrl.url }} ({{ currentUrl.title }})
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" [(ngModel)]="description" name="description" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

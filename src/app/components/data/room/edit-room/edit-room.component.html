@@ -1,0 +1,44 @@
+<h3 class="text-center mb-4">Edit Room</h3>
+<form (ngSubmit)="onSubmit()" #editRoomForm="ngForm" class="container">
+  <div class="form-group">
+    <label for="averagePrice">Average Price:</label>
+    <input type="number" class="form-control" id="averagePrice" [(ngModel)]="room.averagePrice" name="averagePrice"
+      required />
+  </div>
+
+  <div class="form-group">
+    <label for="maxOccupancy">Max Occupancy:</label>
+    <input type="number" class="form-control" id="maxOccupancy" [(ngModel)]="room.maxOccupancy" name="maxOccupancy"
+      required />
+  </div>
+
+  <div class="form-group">
+    <label for="isAvailable">Is Available:</label>
+    <select class="form-control" id="isAvailable" [(ngModel)]="room.isAvailable" name="isAvailable" required>
+      <option [ngValue]="true">Yes</option>
+      <option [ngValue]="false">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="hotelID">Hotel ID:</label>
+    <input type="number" class="form-control" id="hotelID" [(ngModel)]="room.hotelID" name="hotelID" required />
+  </div>
+
+  <div class="form-group">
+    <label for="roomTypeID">Room Type ID:</label>
+    <input type="number" class="form-control" id="roomTypeID" [(ngModel)]="room.roomTypeID" name="roomTypeID"
+      required />
+  </div>
+
+  <div class="form-group">
+    <label for="roomSubTypeID">Room Sub-Type ID:</label>
+    <input type="number" class="form-control" id="roomSubTypeID" [(ngModel)]="room.roomSubTypeID" name="roomSubTypeID"
+      required />
+  </div>
+
+  <div class="text-center mt-4">
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  </div>
+</form>

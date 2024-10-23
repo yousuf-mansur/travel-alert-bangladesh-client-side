@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Add Seat</h2>
+  <form (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="seatsNumber" class="form-label">Seats Number</label>
+      <input type="text" id="seatsNumber" 
+             [(ngModel)]="seat.seatsNumber" 
+             name="seatsNumber" 
+             class="form-control" 
+             required>
+      <div class="invalid-feedback">
+        Please enter a valid seat number.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="packageTransportationID" class="form-label">Package Transportation ID</label>
+      <input type="number" id="packageTransportationID" 
+             [(ngModel)]="seat.packageTransportationID" 
+             name="packageTransportationID" 
+             class="form-control" 
+             required>
+      <div class="invalid-feedback">
+        Please enter a valid package transportation ID.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Seat</button>
+  </form>
+</div>

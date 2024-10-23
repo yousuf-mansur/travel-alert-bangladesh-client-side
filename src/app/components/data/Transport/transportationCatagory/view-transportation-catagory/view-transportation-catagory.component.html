@@ -1,0 +1,28 @@
+
+
+<div>
+  <h2>Transportation Categories</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td>{{ category.transportationCatagoryID }}</td>
+        <td>{{ category.transportationCatagoryName }}</td>
+        <td>
+         
+          <button class="btn btn-danger btn-sm" (click)="deleteCategory(category.transportationCatagoryID)">Delete</button>
+          <button type="button" class="btn btn-primary btn-sm" (click)="ngOnInit()">
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

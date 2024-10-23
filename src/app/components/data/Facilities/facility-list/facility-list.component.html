@@ -1,0 +1,25 @@
+<h3>Facility List</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Availability</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let facility of facilities">
+      <td>{{ facility.facilityID }}</td>
+      <td>{{ facility.facilityName }}</td>
+      <td>{{ facility.description }}</td>
+      <td>{{ facility.isAvailable ? 'Yes' : 'No' }}</td>
+      <td>
+        <a [routerLink]="['/api/facility/edit', facility.facilityID]">Edit</a>
+        <a [routerLink]="['/facility/delete', facility.facilityID]">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a routerLink="/facility/create">Create New Facility</a>

@@ -1,0 +1,42 @@
+<h2>Create New Room</h2>
+<form (ngSubmit)="onSubmit()">
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div>
+    <label>Average Price</label>
+    <input type="number" [(ngModel)]="room.averagePrice" name="averagePrice" required />
+  </div>
+
+  <div>
+    <label>Max Occupancy</label>
+    <input type="number" [(ngModel)]="room.maxOccupancy" name="maxOccupancy" required />
+  </div>
+
+  <div>
+    <label>Available Status</label>
+    <input type="checkbox" [(ngModel)]="room.isAvailable" name="isAvailable" />
+  </div>
+
+  <div>
+    <label>Hotel ID</label>
+    <input type="number" [(ngModel)]="room.hotelID" name="hotelID" required />
+  </div>
+
+  <div>
+    <label>Room Type ID</label>
+    <input type="number" [(ngModel)]="room.roomTypeID" name="roomTypeID" required />
+  </div>
+
+  <div>
+    <label>Room Sub-Type ID</label>
+    <input type="number" [(ngModel)]="room.roomSubTypeID" name="roomSubTypeID" required />
+  </div>
+
+  <div>
+    <button type="submit" class="btn btn-primary">Create Room</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  </div>
+</form>

@@ -1,0 +1,226 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height: 100vh;">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+    <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    <span class="fs-4">Travel Dashboard</span>
+  </a>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" routerLink="/dashboard">
+        <i class="bi bi-house-door me-2"></i> Dashboard
+      </a>
+    </li>
+
+
+    <li>
+      <a href="#urlManagementMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="urlManagementMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-person me-2"></i> User Management
+        </span>
+        <i class="bi bi-chevron-down"></i>
+      </a>
+      <div class="collapse" id="urlManagementMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="/url/list">All url</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/url/add">Add New url</a></li>
+
+          <li><a class="nav-link link-dark ms-4" routerLink="/requesturl/list">All Req url</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/requesturl/add">Add New req url</a></li>
+       
+        </ul>
+      </div>
+    </li> 
+
+
+    <li>
+      <a href="#userManagementMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="userManagementMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-person me-2"></i> User Management
+        </span>
+        <i class="bi bi-chevron-down"></i>
+      </a>
+      <div class="collapse" id="userManagementMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="/users">All Users</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/add-user">Add New User</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="">User Roles</a></li>
+        </ul>
+      </div>
+    </li> 
+
+    <li>
+      <a href="#packageManagementMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="packageManagementMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-box me-2"></i> Package Management
+        </span>
+        <i class="bi bi-chevron-down"></i>
+      </a>
+      <div class="collapse" id="packageManagementMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="/categories">Categories</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/sub-categories">Sub Categories</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/package/add/">Add Package</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/package/details/add/">Details Package</a></li>
+          
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <a href="#packageBudgetMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="packageBudgetMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-wallet2 me-2"></i> Package Budget
+        </span>
+        <i class="bi bi-chevron-down"></i>
+      </a>
+      <div class="collapse" id="packageBudgetMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="/package/addBudget">Budget</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/package/addBudget/1">Add Budget</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/schedule">Schedule</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/schedule/add">Add Schedule</a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <a href="#voucherMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="voucherMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-ticket-perforated me-2"></i> Voucher Management
+        </span>
+        <i class="bi bi-chevron-down"></i>
+      </a>
+      <div class="collapse" id="voucherMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="package/voucher">Vouchers</a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <a href="#countryMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="countryMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-globe me-2"></i> Country Management
+        </span>
+        <i class="bi bi-chevron-down"></i>
+      </a>
+      <div class="collapse" id="countryMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="/countries">Countries</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/api/countries/add">Add Country</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/states">States</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/api/states/add">Add State</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="facility">Facilities</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/api/facility/add">Add Facilities</a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <a href="#busSeatsManagementMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="busSeatsManagementMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-airplane me-2"></i> Bus Seats Management
+        </span>
+        <i class="bi bi-chevron-down"></i>
+      </a>
+      <div class="collapse" id="busSeatsManagementMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="/view-bus-seats">View Bus Seats</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/add-bus-seats">Add Bus Seat</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/edit-bus-seats/1">Edit Bus Seat</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/delete-bus-seats/1">Delete Bus Seat</a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <a href="#transportationTypeMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="transportationTypeMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-car-front me-2"></i> Transportation Type
+        </span>
+        <i class="bi bi-chevron-down"></i>
+      </a>
+      <div class="collapse" id="transportationTypeMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="/transportation-types">View Transportation Types</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/transportation-types/add">Add Transportation Type</a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <a href="#transportProviderMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="transportProviderMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-truck me-2"></i> Transport Providers
+        </span>
+        <i class="bi bi-chevron-down"></i>
+      </a>
+      <div class="collapse" id="transportProviderMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="/transport-providers">View Transport Providers</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/transport-providers/add">Add Transport Provider</a></li>
+        </ul>
+      </div>
+    </li>
+
+
+    <li>
+      <a href="#foodManagementMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="packageManagementMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-balloon-heart-fill"></i>
+          Food Management
+        </span>
+        <i class="bi bi-chevron-down"></i> 
+      </a>
+      <div class="collapse" id="foodManagementMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+         
+          <li><a class="nav-link link-dark ms-4" routerLink="/foodItems">Food Items</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/mealTypes">Meal Types</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/packageFoodItemsList">Package Food Item</a></li>
+        </ul>
+      </div>
+    </li>
+
+
+
+    <li>
+      <a href="#PackageTransportationMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="TransportationMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-truck"></i> 
+          Package Transportation
+        </span>
+        <i class="bi bi-chevron-down"></i> 
+      </a>
+      <div class="collapse" id="PackageTransportationMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="/package/transportation">View Package Transportation</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/package/transportation/add">Add View Package Transportation</a></li>
+         
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <a href="#LocationMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="packageManagementMenu" class="nav-link link-dark d-flex justify-content-between align-items-center">
+        <span>
+          <i class="bi bi-box"></i> 
+          Location Management
+        </span>
+        <i class="bi bi-chevron-down"></i> 
+      </a>
+      <div class="collapse" id="LocationMenu">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="nav-link link-dark ms-4" routerLink="/categories">Categories</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/sub-categories">Sub Categories</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="">Facilities</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/location">Location</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/locationGalleryList">Location Gallery</a></li>
+         
+        </ul>
+      </div>
+    </li>
+
+
+  </ul>
+</div>

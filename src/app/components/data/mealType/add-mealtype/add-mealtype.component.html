@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <div class="card-header d-flex justify-content-between align-items-center bg-white text-black">
+  <h2 class="mb-0">{{ selectedMealType ? 'Update Meal Type' : 'Add Meal Type' }}</h2>
+  <a class="btn btn-outline-primary shadow-sm" routerLink="/mealTypes">
+    <i class="bi bi-list"></i> Meal Type List
+  </a>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <form (ngSubmit)="selectedMealType ? updateMealType() : addMealType()" class="p-4 needs-validation" novalidate>
+      <div class="mb-4">
+        <label for="typeName" class="form-label">Meal Type Name:</label>
+        <input 
+          type="text" 
+          id="typeName" 
+          [(ngModel)]="newMealType.typeName" 
+          name="typeName" 
+          class="form-control shadow-sm" 
+          placeholder="Enter meal type name" 
+          required
+        />
+        <div class="invalid-feedback">
+          Please provide a meal type name.
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-success shadow-sm px-4">
+          <i class="bi bi-save"></i> {{ selectedMealType ? 'Update Meal Type' : 'Add Meal Type' }}
+        </button>
+
+        <!-- Cancel Update Button -->
+        <button 
+          type="button" 
+          class="btn btn-secondary shadow-sm px-4" 
+          (click)="selectedMealType = undefined" 
+          *ngIf="selectedMealType"
+        >
+          <i class="bi bi-x-circle"></i> Back To List
+        </button>
+
+        <!-- Return to Meal Type List -->
+        <a routerLink="/mealTypes" class="btn btn-secondary shadow-sm px-4">
+          <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+</div>

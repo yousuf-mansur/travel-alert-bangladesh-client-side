@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <h2>Delete Seat</h2>
+  
+  <p>Are you sure you want to delete the seat with ID: {{ id }}?</p>
+
+  <div class="d-flex justify-content-between mt-3">
+    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    <a routerLink="/view-seats" class="btn btn-secondary">Cancel</a>
+  </div>
+
+  <div *ngIf="deletionSuccess" class="alert alert-success mt-3">
+    Seat deleted successfully!
+  </div>
+  
+  <div *ngIf="deletionError" class="alert alert-danger mt-3">
+    Error deleting seat. Please try again.
+  </div>
+</div>

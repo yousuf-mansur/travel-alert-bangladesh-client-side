@@ -1,0 +1,48 @@
+<h2>Transportation List</h2>
+
+<!-- Loading Spinner -->
+<div *ngIf="isLoading">Loading...</div>
+
+<!-- Error Message Display -->
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<!-- Transportation Table -->
+<table *ngIf="!isLoading && transportations.length > 0" class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Provider ID</th>
+      <th>Active</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Loop through the transportations list -->
+    <tr *ngFor="let transport of transportations">
+      <td>{{ transport.transportationID }}</td>
+      <td>{{ transport.description }}</td>
+      <td>{{ transport.transportProviderID }}</td>
+      <td>{{ transport.isActive ? 'Yes' : 'No' }}</td>
+      <td>
+        <button [routerLink]="['/api/Transportation/update/:id', transport.transportationID]" class="btn btn-outline-primary me-2">
+          Edit
+        </button>
+        
+       <!-- Delete Button -->
+<button class="btn btn-danger" (click)="deleteTransportation(transport.transportationID)">
+  Delete
+</button>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- No Transportations Found Message -->
+<div *ngIf="!isLoading && transportations.length === 0">
+  No transportations found.
+</div>
+

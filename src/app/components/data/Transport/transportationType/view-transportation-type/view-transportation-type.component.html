@@ -1,0 +1,32 @@
+<div class="container p-4 bg-light rounded shadow-sm">
+  <h2 class="text-center mb-4">View Transportation Types</h2>
+
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Type Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let type of types">
+        <td>{{ type.transportationTypeID }}</td>
+        <td>{{ type.typeName }}</td>
+        <td>
+          <button routerLink="/transportation-types/edit/{{ type.transportationTypeID }}" 
+                  class="btn btn-outline-primary me-2">
+            Edit
+          </button>
+          <button [routerLink]="['/delete-type', type.transportationTypeID]" 
+                  class="btn btn-outline-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+

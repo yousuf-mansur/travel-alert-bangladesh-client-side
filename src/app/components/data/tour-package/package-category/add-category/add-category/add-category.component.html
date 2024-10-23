@@ -1,0 +1,40 @@
+<div class="card mt-3">
+    <div class="card-header">
+      <h3 class="float-start">Add Package Category</h3>
+      <a class="btn btn-primary float-end" routerLink="/categories">Category List</a>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="categoryName" class="form-label">Category Name</label>
+          <input
+            type="text"
+            id="categoryName"
+            class="form-control"
+            placeholder="Enter category name"
+            formControlName="categoryName"
+          />
+          <div *ngIf="categoryForm.get('categoryName')?.hasError('required')" class="text-danger">
+            Category Name is required
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            id="description"
+            class="form-control"
+            rows="3"
+            placeholder="Enter category description"
+            formControlName="description"
+          ></textarea>
+          <div *ngIf="categoryForm.get('description')?.hasError('required')" class="text-danger">
+            Description is required
+          </div>
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Add Category</button>
+      </form>
+    </div>
+  </div>
+  

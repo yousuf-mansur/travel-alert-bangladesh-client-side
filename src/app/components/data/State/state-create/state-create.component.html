@@ -1,0 +1,16 @@
+<p>state-create works!</p>
+<div class="container">
+    <h2>Create New State</h2>
+    <form (ngSubmit)="createState()">
+      <div class="form-group">
+        <label for="stateName">State Name:</label>
+        <input type="text" class="form-control" id="stateName" [(ngModel)]="state.stateName" name="stateName" required />
+      </div>
+      <div class="form-group">
+        <label for="countryID">Country ID:</label>
+        <input type="number" class="form-control" id="countryID" [(ngModel)]="state.countryID" name="countryID" required />
+      </div>
+      <button type="submit" class="btn btn-success">Create</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Edit Transportation</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="isActive">Is Active</label>
+      <input type="checkbox" id="isActive" class="form-control" formControlName="isActive">
+    </div>
+
+    <div class="form-group">
+      <label for="transportProviderID">Transport Provider</label>
+      <input
+        type="number"
+        id="transportProviderID"
+        class="form-control"
+        formControlName="transportProviderID"
+        placeholder="Enter Transport Provider ID"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control"
+        formControlName="description"
+        placeholder="Enter Description"
+      >
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">
+      Update
+    </button>
+  </form>
+</div>
+

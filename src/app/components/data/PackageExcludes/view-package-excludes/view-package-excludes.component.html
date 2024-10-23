@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>Package Excludes</h2>
+  <div class="card-header">
+    <a class="btn btn-outline-primary btn-sm float-end" routerLink="/packageexcludes/add">Add Package
+      Excludes</a>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+
+  <div *ngIf="packageExcludes && packageExcludes.length > 0" class="mt-3">
+    <h3>Package Excludes:</h3>
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Package ID</th>
+          <th>Exclude Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let excludes of packageExcludes;let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ excludes.packageID }}</td>
+          <td>{{ excludes.excludeDescription }}</td>
+          <td>
+            <!-- Add a button to delete package includes -->
+            <a class="btn btn-outline-primary btn-sm" [routerLink]="['/packageexcludes/update/:packageId']">Edit</a>
+            <!-- <button class="btn btn-danger btn-sm" (click)="deletePackageIncludes(package.includeID)">
+                        Delete
+                      </button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

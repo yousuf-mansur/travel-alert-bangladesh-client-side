@@ -1,0 +1,80 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Add Location</h2>
+
+    <!-- Go to Location List button in the top-right corner -->
+    <a [routerLink]="['/location']" class="btn btn-outline-primary">
+      <i class="bi bi-list"></i> Go to Location List
+    </a>
+  </div>
+
+  <form (submit)="addLocation()" class="needs-validation" novalidate>
+    <div class="row">
+      <!-- Left Column -->
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="locationName" class="form-label">Location Name</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="locationName" 
+            [(ngModel)]="location.locationName" 
+            name="locationName" 
+            required
+          />
+          <div class="invalid-feedback">
+            Please enter the location name.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="locationDescription" class="form-label">Location Description</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="locationDescription" 
+            [(ngModel)]="location.locationDescription" 
+            name="locationDescription" 
+            required
+          />
+          <div class="invalid-feedback">
+            Please enter a description for the location.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="stateID" class="form-label">State</label>
+          <select 
+            class="form-control" 
+            id="stateID" 
+            [(ngModel)]="location.stateID" 
+            name="stateID" 
+            required
+          >
+            <option value="" disabled>Select a state</option>
+            <option *ngFor="let state of state" [value]="state.stateID">
+              {{ state.stateName }}
+            </option>
+          </select>
+          <div class="invalid-feedback">
+            Please select a state.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Add Location
+      </button>
+
+      <!-- Cancel Button on the right -->
+      <a [routerLink]="['/location']" class="btn btn-outline-danger">
+        <i class="bi bi-x-circle"></i> Cancel
+      </a>
+    </div>
+  </form>
+</div>

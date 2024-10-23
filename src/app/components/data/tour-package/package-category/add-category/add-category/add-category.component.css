@@ -1,0 +1,16 @@
+.full-width {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  mat-card {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  

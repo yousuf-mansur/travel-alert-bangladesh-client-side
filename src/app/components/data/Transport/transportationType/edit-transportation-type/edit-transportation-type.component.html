@@ -1,0 +1,25 @@
+<div class="container">
+  <h2 class="my-4">Edit Transportation Type</h2>
+  <form (ngSubmit)="saveChanges()" #transportationTypeForm="ngForm">
+    <div class="mb-3">
+      <label for="typeName" class="form-label">Transportation Type Name:</label>
+      <input 
+        type="text" 
+        id="typeName" 
+        class="form-control" 
+        [(ngModel)]="transportationType.typeName" 
+        name="typeName" 
+        required 
+        maxlength="100" 
+      />
+    </div>
+
+    <button 
+      type="submit" 
+      class="btn btn-primary" 
+      [disabled]="!transportationTypeForm.form.valid">
+      Update Transportation Type
+    </button>
+    <a routerLink="/transportation-types" class="btn btn-secondary ms-2">Cancel</a>
+  </form>
+</div>

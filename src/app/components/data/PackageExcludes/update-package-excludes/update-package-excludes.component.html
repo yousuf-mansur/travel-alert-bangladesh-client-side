@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Update Package Excludes</h2>
+
+  <form [formGroup]="packageExcludesForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="packageID">Package ID:</label>
+      <input id="packageID" type="number" formControlName="packageID" />
+      <div
+        *ngIf="packageExcludesForm.controls['packageID'].invalid && packageExcludesForm.controls['packageID'].touched">
+        Package ID is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="excludeDescription">Exclude Description:</label>
+      <textarea id="excludeDescription" formControlName="excludeDescription"></textarea>
+      <div
+        *ngIf="packageExcludesForm.controls['excludeDescription'].invalid && packageExcludesForm.controls['excludeDescription'].touched">
+        Exclude Description is required.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="packageExcludesForm.invalid">Update</button>
+  </form>
+</div>

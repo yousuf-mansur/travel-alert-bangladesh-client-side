@@ -1,0 +1,96 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <!-- Card for form -->
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-5">
+          <h4 class="text-center mb-4 text-primary">Add Package Food Items</h4>
+          
+          <!-- Form for adding a new food item -->
+          <form (ngSubmit)="addPackageFoodItem()" class="row g-4">
+            <!-- Meal Type -->
+            <div class="col-md-6">
+              <label for="mealTypeID" class="form-label">Meal Type</label>
+              <select id="mealTypeID" [(ngModel)]="newFoodItem.mealTypeID" name="mealTypeID" class="form-select" required>
+                <option value="" disabled selected>Select Meal Type</option>
+                <option *ngFor="let mealType of mealTypes" [value]="mealType.mealTypeID">
+                  {{ mealType.typeName }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Food Item -->
+            <div class="col-md-6">
+              <label for="foodItemID" class="form-label">Food Item</label>
+              <select id="foodItemID" [(ngModel)]="newFoodItem.foodItemID" name="foodItemID" class="form-select" required>
+                <option value="" disabled selected>Select Food Item</option>
+                <option *ngFor="let foodItem of foodItems" [value]="foodItem.foodItemID">
+                  {{ foodItem.itemName }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Package Day Number -->
+            <div class="col-md-6">
+              <label for="packageDayNumber" class="form-label">Package Day Number</label>
+              <input type="number" class="form-control" id="packageDayNumber" [(ngModel)]="newFoodItem.packageDayNumber" name="packageDayNumber" required />
+            </div>
+
+            <!-- Food Quantity -->
+            <div class="col-md-6">
+              <label for="foodQuantity" class="form-label">Food Quantity</label>
+              <input type="number" class="form-control" id="foodQuantity" [(ngModel)]="newFoodItem.foodQuantity" name="foodQuantity" required />
+            </div>
+
+            <!-- Food Unit Price -->
+            <div class="col-md-6">
+              <label for="foodUnitPrice" class="form-label">Food Unit Price</label>
+              <input type="number" class="form-control" id="foodUnitPrice" [(ngModel)]="newFoodItem.foodUnitPrice" name="foodUnitPrice" required />
+            </div>
+
+            <!-- Schedule Time -->
+            <div class="col-md-6">
+              <label for="scheduleTime" class="form-label">Schedule Time</label>
+              <input type="datetime-local" class="form-control" id="scheduleTime" [(ngModel)]="newFoodItem.scheduleTime" name="scheduleTime" required />
+            </div>
+
+            <!-- Buttons -->
+            <div class="col-12 text-center d-flex justify-content-between">
+              <button type="submit" class="btn btn-gradient-primary btn-lg px-4">Add Food Item</button>
+              <button type="button" class="btn btn-secondary btn-lg ms-3 px-4" (click)="SaveExit()">Save & Exit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- List of added food items -->
+  <h3 class="mt-5 text-primary">Previous Package Food Items List</h3>
+  <div class="table-responsive mt-4">
+    <table class="table table-hover table-bordered rounded shadow-sm">
+      <thead class="table-primary text-center">
+        <tr>
+          <th>Meal Type</th>
+          <th>Food Item</th>
+          <th>Package Day Number</th>
+          <th>Food Quantity</th>
+          <th>Food Unit Price</th>
+          <th>Total Price</th>
+          <th>Schedule Time</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <tr *ngFor="let item of packageFoodItems">
+          <td>{{ getMealTypeName(item.mealTypeID) }}</td>
+          <td>{{ getFoodItemName(item.foodItemID) }}</td>
+          <td>{{ item.packageDayNumber }}</td>
+          <td>{{ item.foodQuantity }}</td>
+          <td>{{ item.foodUnitPrice }}</td>
+          <td>{{ (item.foodQuantity * item.foodUnitPrice) }}</td>
+          <td>{{ item.scheduleTime | date:'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

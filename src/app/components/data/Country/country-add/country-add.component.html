@@ -1,0 +1,11 @@
+<div>
+    <h2>Add New Country</h2>
+    <form [formGroup]="countryForm" (ngSubmit)="addCountry()">
+      <div>
+        <label for="countryName">Country Name</label>
+        <input id="countryName" formControlName="countryName" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="countryForm.invalid">Add Country</button>
+    </form>
+  </div>
+  

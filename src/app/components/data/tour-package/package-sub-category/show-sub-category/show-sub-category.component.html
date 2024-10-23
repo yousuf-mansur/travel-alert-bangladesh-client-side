@@ -1,0 +1,31 @@
+<div class="card mt-3">
+    <div class="card-header">
+        <h2 class="float-start">Tour Package Sub Category List</h2>
+        <a class="btn btn-primary float-end" routerLink="/add-sub-category">Add Sub Category</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Sub-Category Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let subCategory of subCategories">
+                    <td>{{ subCategory.packageSubCategoryID }}</td>
+                    <td>{{ subCategory.subCategoryName }}</td>
+                    <td>{{ subCategory.description }}</td>
+                    <td>{{ subCategory.categoryName }}</td> <!-- Use categoryName directly -->
+                    <td>
+                        <a [routerLink]="['/update-sub-category', subCategory.packageSubCategoryID]" class="btn btn-primary me-1">Edit</a>
+
+                        <button class="btn btn-danger" (click)="deleteSubCategory(subCategory.packageSubCategoryID)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="add-category-container">
+  <h2>Add Transportation Category</h2>
+
+  <form (ngSubmit)="addCategory()">
+    <div class="form-group">
+      <label for="categoryName">Category Name</label>
+      <input type="text" id="categoryName" [(ngModel)]="category.transportationCatagoryName" name="categoryName" class="form-control" placeholder="Enter category name" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Category</button>
+  </form>
+
+  <!-- Success message -->
+  <div *ngIf="successMessage" class="alert alert-success mt-3">
+    {{ successMessage }}
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
+</div>

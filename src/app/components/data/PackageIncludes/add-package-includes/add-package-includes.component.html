@@ -1,0 +1,18 @@
+<div class="container">
+  <h2 class="display-6 fw-bold text-center">Add Package Includes</h2>
+  <form [formGroup]="packageIncludesForm" (ngSubmit)="onSubmit()">
+    <div class="form-group mt-2">
+      <label class="fw-bold" for="packageID">Package ID</label>
+      <input id="packageID" formControlName="packageID" type="number" class="form-control"
+        placeholder="Enter Include ID" />
+    </div>
+
+    <div class="form-group mt-2">
+      <label class="fw-bold" for="includeDescription">Include Description</label>
+      <textarea id="includeDescription" formControlName="includeDescription" class="form-control"
+        placeholder="Enter Include Description"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary btn-sm mt-3">Save Includes</button>
+  </form>
+</div>

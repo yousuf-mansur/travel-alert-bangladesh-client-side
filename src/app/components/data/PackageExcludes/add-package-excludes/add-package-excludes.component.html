@@ -1,0 +1,18 @@
+<div class="container">
+  <h2 class="display-6 fw-bold text-center">Add Package Excludes</h2>
+  <form [formGroup]="packageExcludesForm" (ngSubmit)="onSubmit()">
+    <div class="form-group mt-2">
+      <label class="fw-bold" for="packageID">Package ID</label>
+      <input id="packageID" formControlName="packageID" type="number" class="form-control"
+        placeholder="Enter Package ID" />
+    </div>
+
+    <div class="form-group mt-2">
+      <label class="fw-bold" for="excludeDescription">Exclude Description</label>
+      <textarea id="excludeDescription" formControlName="excludeDescription" class="form-control"
+        placeholder="Enter Exclude Description"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary btn-sm mt-3">Save Excludes</button>
+  </form>
+</div>

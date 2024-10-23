@@ -1,0 +1,81 @@
+<!-- <div *ngIf="transportationItems.length > 0; else noData">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Package ID</th>
+        <th>Transportation TypeID</th>
+        <th>TransportationCategoryID</th>
+        <th>TransportationID</th>
+        <th>Seats Booked</th>
+        <th>Cost Per Head</th>
+        <th>Total Cost</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of transportationItems">
+        <td>{{ item.packageID }}</td>
+        <td>{{ item.transportationTypeID }}</td>
+        <td>{{ item.transportationCatagoryID }}</td>
+        <td>{{ item.transportationID }}</td>
+        <td>{{ item.seatBooked }}</td>
+        <td>{{ item.perHeadTransportCost }}</td>
+        <td>{{ item.itemTransportTotalCost }}</td>
+        <td>{{ item.packageTransportationDescription }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noData>
+  <p>No transportation items found.</p>
+</ng-template> -->
+
+<!-- Input field and button to get package transportation items by package ID -->
+<div>
+  <label for="packageIdInput">Enter Package ID:</label>
+  <input id="packageIdInput" #packageIdInput type="number" placeholder="Package ID">
+  <button class="btn btn-outline-primary" (click)="getPackageTransportation(packageIdInput.value)">Get Package Transportation</button>
+</div>
+
+<a class="btn btn-outline-primary shadow-sm" routerLink="/add-package-transportation">
+  <i class="bi bi-plus-circle"></i> Add New Package Transportation
+</a>
+<hr>
+
+<!-- List of package transportation items -->
+<h3>Transportation Items for Package</h3>
+<div *ngIf="transportationItems.length > 0; else noData">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Package ID</th>
+        <th>Transportation Type ID</th>
+        <th>Transportation Category ID</th>
+        <th>Transportation ID</th>
+        <th>Seats Booked</th>
+        <th>Cost Per Head</th>
+        <th>Total Cost</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of transportationItems">
+        <td>{{ item.packageID }}</td>
+        <td>{{ item.transportationTypeID }}</td>
+        <td>{{ item.transportationCatagoryID }}</td>
+        <td>{{ item.transportationID }}</td>
+        <td>{{ item.seatBooked }}</td>
+        <td>{{ item.perHeadTransportCost }}</td>
+        <td>{{ item.itemTransportTotalCost }}</td>
+        <td>{{ item.packageTransportationDescription }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Display message when no transportation items are found -->
+<ng-template #noData>
+  <p>No transportation items found for this package.</p>
+</ng-template>
+

@@ -1,0 +1,37 @@
+<div class="container">
+    <h2>Request URLs</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Request URL ID</th>
+                <th>URL</th>
+                <th>URL Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let requestUrl of requestUrls">
+                <td>{{ requestUrl.requestUrlId }}</td>
+                <td>{{ requestUrl.url }}</td>
+                <td>{{ requestUrl.urlName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Current URLs</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Current URL ID</th>
+                <th>URL</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let currentUrl of currentUrls">
+                <td>{{ currentUrl.currentUrlId }}</td>
+                <td>{{ currentUrl.url }}</td>
+                <td>{{ currentUrl.title }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

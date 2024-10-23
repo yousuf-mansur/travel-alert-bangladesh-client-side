@@ -1,0 +1,28 @@
+<form [formGroup]="galleryForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="isPrimary" class="form-label">Is Primary</label>
+    <select id="isPrimary" class="form-select" formControlName="isPrimary">
+      <option [value]="true">Yes</option>
+      <option [value]="false">No</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="imageCaption" class="form-label">Image Caption</label>
+    <input type="text" id="imageCaption" class="form-control" formControlName="imageCaption">
+  </div>
+
+  <div class="mb-3">
+    <label for="locationID" class="form-label">Location ID</label>
+    <input type="number" id="locationID" class="form-control" formControlName="locationID">
+  </div>
+
+  <div class="mb-3">
+    <label for="imageFile" class="form-label">Image File</label>
+    <input type="file" id="imageFile" (change)="onImageFileChange($event)" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="galleryForm.invalid">
+    {{ galleryId ? 'Update' : 'Add' }} Gallery
+  </button>
+</form>

@@ -1,0 +1,101 @@
+<p>add-schedule works!</p>
+<div class="container">
+    <h2>Add New Schedule</h2>
+    <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+      
+      
+  
+      <div class="form-group">
+        <label for="scheduleTitle">Schedule Title</label>
+        <input id="scheduleTitle" type="text" class="form-control" formControlName="scheduleTitle">
+      </div>
+  
+      <div class="form-group">
+        <label for="scheduleDescription">Schedule Description</label>
+        <textarea id="scheduleDescription" class="form-control" formControlName="scheduleDescription"></textarea>
+      </div>
+  
+    
+  
+      <div class="form-group">
+        <label for="dayNumber">Day Number</label>
+        <input id="dayNumber" type="number" class="form-control" formControlName="dayNumber">
+      </div>
+  
+      <div class="form-group">
+        <label for="tentativeTime">Tentative Time</label>
+        <input id="tentativeTime" type="datetime-local" class="form-control" formControlName="tentativeTime">
+      </div>
+  
+      <div class="form-group">
+        <label for="actualTime">Actual Time</label>
+        <input id="actualTime" type="datetime-local" class="form-control" formControlName="actualTime">
+      </div>
+  
+      <div class="form-group">
+        <label for="tentativeCost">Tentative Cost</label>
+        <input id="tentativeCost" type="number" class="form-control" formControlName="tentativeCost">
+      </div>
+  
+      <div class="form-group">
+        <label for="actualCost">Actual Cost</label>
+        <input id="actualCost" type="number" class="form-control" formControlName="actualCost">
+      </div>
+  
+      <div class="form-group">
+        <label for="dayCostCategoryID">Day Cost Category ID</label>
+        <input id="dayCostCategoryID" type="number" class="form-control" formControlName="dayCostCategoryID">
+      </div>
+  
+
+      <div class="form-group">
+        <label for="tourVoucherID">Tour Voucher ID</label>
+        <input id="tourVoucherID" type="number" class="form-control" formControlName="tourVoucherID">
+      </div>
+
+
+      <button type="submit" class="btn btn-success">Add Schedule</button>
+    </form>
+  </div>
+
+
+  <p>schedule-list works!</p>
+
+<div class="container">
+    <h2>Schedules for Package {{packId}}</h2>
+    
+    <div *ngIf="schedules.length > 0; else noSchedules">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Schedule ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Day Number</th>
+            <th>Tentative Time</th>
+            <th>Actual Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let schedule of schedules">
+            <td>{{ schedule.scheduleID }}</td>
+            <td>{{ schedule.scheduleTitle }}</td>
+            <td>{{ schedule.scheduleDescription }}</td>
+            <td>{{ schedule.dayNumber }}</td>
+            <td>{{ schedule.tentativeTime | date:'short' }}</td>
+            <td>{{ schedule.actualTime ? (schedule.actualTime | date:'short') : 'N/A' }}</td>
+            <!-- <td>
+              <a [routerLink]="['/schedule/edit', schedule.scheduleID]" class="btn btn-primary btn-sm">Edit</a>
+              <button class="btn btn-danger btn-sm" (click)="deleteSchedule(schedule.scheduleID)">Delete</button>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <ng-template #noSchedules>
+      <p>No schedules available for this package.</p>
+    </ng-template>
+  </div>
+  

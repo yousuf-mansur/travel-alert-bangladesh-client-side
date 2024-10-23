@@ -1,0 +1,13 @@
+<h3>Edit Facility</h3>
+<form *ngIf="facility" (submit)="updateFacility()">
+  <label>Facility Name:</label>
+  <input [(ngModel)]="facility.facilityName" name="facilityName" required />
+
+  <label>Description:</label>
+  <input [(ngModel)]="facility.description" name="description" required />
+
+  <label>Is Available:</label>
+  <input type="checkbox" [(ngModel)]="facility.isAvailable" name="isAvailable" />
+
+  <button type="submit">Update</button>
+</form>

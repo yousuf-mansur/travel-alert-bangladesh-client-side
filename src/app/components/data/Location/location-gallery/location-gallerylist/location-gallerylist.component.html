@@ -1,0 +1,51 @@
+<!-- Add Gallery Button -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3 class="mb-0">Location Galleries</h3>
+  <a routerLink="/LocationGallery/add" class="btn btn-success">
+    <i class="bi bi-plus-lg"></i> Add Gallery
+  </a>
+</div>
+
+<!-- Dropdown for selecting location -->
+<div class="mb-2">
+  <label for="locationSelect" class="form-label">Select Location:</label>
+  <select id="locationSelect" [(ngModel)]="selectedLocationId" class="form-select">
+    <option [value]="0" disabled>Select a location</option>
+    <option *ngFor="let location of locations" [value]="location.locationID">
+      {{ location.locationName }}
+    </option>
+  </select>
+</div>
+
+<!-- Button to load galleries for the selected location -->
+<button class="btn btn-primary" (click)="getGalleriesByLocationId()">Load Galleries</button>
+
+<!-- Gallery List -->
+<div *ngIf="locationGalleries.length > 0; else noGalleries">
+  <ul class="list-unstyled mt-3">
+    <li *ngFor="let gallery of locationGalleries" class="mb-3">
+      <img [src]="gallery.imageUrl" alt="{{gallery.imageCaption}}" width="150" class="me-3" />
+      <div class="d-inline-block">
+        <p class="mb-1">{{gallery.imageCaption}}</p>
+
+        <!-- Edit Button -->
+        <a 
+          [routerLink]="['/LocationGallery/edit', gallery.locationGalleryID]" 
+          class="btn btn-outline-primary btn-sm me-2"
+        >
+          <i class="bi bi-pencil"></i> Edit
+        </a>
+
+        <!-- Delete Button -->
+        <button class="btn btn-danger btn-sm" (click)="onDelete(gallery.locationGalleryID)">
+          <i class="bi bi-trash"></i> Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Template for no galleries found -->
+<ng-template #noGalleries>
+  <p>No galleries available for this location.</p>
+</ng-template>

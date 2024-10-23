@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Update Package Includes</h2>
+
+  <form [formGroup]="packageIncludesForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="packageID">Package ID:</label>
+      <input id="packageID" type="number" formControlName="packageID" />
+      <div
+        *ngIf="packageIncludesForm.controls['packageID'].invalid && packageIncludesForm.controls['packageID'].touched">
+        Include ID is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="includeDescription">Include Description:</label>
+      <textarea id="includeDescription" formControlName="includeDescription"></textarea>
+      <div
+        *ngIf="packageIncludesForm.controls['includeDescription'].invalid && packageIncludesForm.controls['includeDescription'].touched">
+        Include Description is required.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="packageIncludesForm.invalid">Update</button>
+  </form>
+</div>

@@ -1,0 +1,39 @@
+<div *ngIf="package" class="p-3">
+  <h2 class="mb-3">Package Details</h2>
+  
+  <p><strong>Package ID:</strong> {{ package.packageID }}</p>
+  <p><strong>Estimated Food Cost:</strong> {{ package.estimateedFoodCost | currency }}</p>
+  <p><strong>Estimated Transport Cost:</strong> {{ package.estimatedTransportCost | currency }}</p>
+  <p><strong>Estimated Accommodation Cost:</strong> {{ package.estimatedAccomodationCost | currency }}</p>
+
+  <!-- Display the current Other Cost -->
+  <p><strong>Other Cost:</strong> {{ package.otherCost | currency }}</p>
+
+  <!-- Display the current Profit Percent -->
+  <p><strong>Profit Percent:</strong> {{ package.profitPercent }}%</p>
+
+  <!-- Button to toggle the input fields -->
+  <button (click)="toggleOtherCostInput()" class="btn btn-info mb-3">
+    {{ showOtherCostInput ? 'Cancel' : 'Update Costs' }}
+  </button>
+
+  <!-- Show the input fields when the button is clicked -->
+  <div *ngIf="showOtherCostInput" class="mb-3">
+    <div class="mb-3">
+      <label for="otherCost" class="form-label">Other Cost:</label>
+      <input id="otherCost" type="number" [(ngModel)]="otherCost" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label for="profitPercent" class="form-label">Profit Percent:</label>
+      <input id="profitPercent" type="number" [(ngModel)]="package.profitPercent" class="form-control" />
+    </div>
+
+    <button (click)="updateOtherCost()" class="btn btn-primary">Update</button>
+  </div>
+
+  <p><strong>Subtotal:</strong> {{ package.subtotal | currency }}</p>
+  <p><strong>Profit:</strong> {{ package.profit | currency }}</p>
+  <p><strong>Total Package Cost:</strong> {{ package.totalPackageCost | currency }}</p>
+  <p><strong>Individual Package Cost:</strong> {{ package.individualPackageCost | currency }}</p>
+</div>

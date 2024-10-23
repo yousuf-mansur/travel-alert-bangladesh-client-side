@@ -1,0 +1,61 @@
+<div class="container">
+
+
+  <div class="card-header d-flex justify-content-between align-items-center bg-white text-black">
+    <h2 class="mb-0">Add Package Details</h2>
+    <a class="btn btn-outline-primary" [routerLink]="['/packagedetails/get/:packageId']">
+      <i class="bi bi-list"></i> Package Details List
+    </a>
+  </div>
+
+  <!-- The Form -->
+  <form [formGroup]="packageDetailsForm" (ngSubmit)="addPackageDetails()">
+    <!-- Form fields for accommodation data -->
+    <div class="form-group">
+      <label for="packageID">Package ID</label>
+      <input type="number" id="packageID" formControlName="packageID" class="form-control shadow-sm">
+    </div>
+    <div class="form-group">
+      <label for="packageDuration">Package Duration (Days)</label>
+      <input type="number" id="packageDuration" formControlName="packageDuration" class="form-control shadow-sm">
+    </div>
+
+    <div class="form-group">
+      <label for="startDate">Start Date</label>
+      <input type="date" id="startDate" formControlName="startDate" class="form-control shadow-sm">
+    </div>
+    <div class="form-group">
+      <label for="endDate">End Date</label>
+      <input type="date" id="endDate" formControlName="endDate" class="form-control shadow-sm">
+    </div>
+    <div class="form-group">
+      <label for="pickupPoint">Pickup Point</label>
+      <input type="text" id="pickupPoint" formControlName="pickupPoint" class="form-control shadow-sm">
+    </div>
+    <div class="form-group">
+      <label for="maximumPerson">Maximum Persons</label>
+      <input type="number" id="maximumPerson" formControlName="maximumPerson" class="form-control shadow-sm">
+    </div>
+
+    <div class="form-group">
+      <label for="minimumPerson">Minimum Persons</label>
+      <input type="number" id="minimumPerson" formControlName="minimumPerson" class="form-control shadow-sm">
+    </div>
+
+    <!-- Conditionally show spinner or submit button -->
+    <button type="submit" class="btn btn-primary" [disabled]="loading">
+      <span *ngIf="!loading">Add Package Details</span>
+      <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status"></div>
+    </button>
+  </form>
+
+  <!-- Success message -->
+  <div *ngIf="successMessage" class="alert alert-success mt-3">
+    {{ successMessage }}
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
+</div>

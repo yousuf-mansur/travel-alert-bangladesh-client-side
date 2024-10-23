@@ -1,0 +1,83 @@
+<div class="container">
+  <h2>Package Includes</h2>
+  <div class="card-header">
+    <a class="btn btn-outline-primary btn-sm float-end" routerLink="/packageincludes/add">Add Package
+      Includes</a>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+
+  <div *ngIf="packageIncludes && packageIncludes.length > 0" class="mt-3">
+
+    <table class="table table-bordered table-striped table-sm table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Package ID</th>
+          <th>Include Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let includes of packageIncludes;let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ includes.packageID }}</td>
+          <td>{{ includes.includeDescription }}</td>
+          <td>
+            <!-- Add a button to delete package includes -->
+            <a class="btn btn-outline-primary btn-sm" [routerLink]="['/packageincludes/update/:packageId']">Edit</a>
+            <!-- <button class="btn btn-danger btn-sm" (click)="deletePackageIncludes(package.includeID)">
+                        Delete
+                      </button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- <div class="container">
+  <h2>Package Includes</h2>
+  <div class="card-header">
+    <a class="btn btn-outline-primary btn-sm float-end" routerLink="/packageinclude/add/:packageId">Add Package
+      Includes</a>
+  </div>
+
+  <-- Check if there are any package includes to display -->
+<!-- <div *ngIf="!packageIncludes || packageIncludes.length === 0">
+    No package includes available.
+  </div> -->
+
+<!-- <div *ngIf="packageIncludes && packageIncludes.length > 0">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Package ID</th>
+          <th>Include Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <-- Loop through packageIncludes array to display data -->
+<!-- <tr *ngFor="let package of packageIncludes; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ package.packageID }}</td>
+          <td>{{ package.includeDescription }}</td>
+          <td> -->
+<!-- Add a button to delete package includes -->
+<!-- <a class="btn btn-outline-primary btn-sm"
+              [routerLink]="['/packageinclude/update/:packageId', package.includeID]">Edit</a> -->
+<!-- <button class="btn btn-danger btn-sm" (click)="deletePackageIncludes(package.includeID)">
+              Delete
+            </button> -->
+<!-- </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->

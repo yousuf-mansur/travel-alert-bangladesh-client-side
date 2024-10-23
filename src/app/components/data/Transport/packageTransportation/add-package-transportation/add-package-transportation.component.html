@@ -1,0 +1,89 @@
+<div class="container mt-3">
+  <h3 class="mb-4">Add Package Transportation</h3>
+  <form (ngSubmit)="addPackageTransportation()">
+
+    <div class="row">
+      <!-- Transportation Type Dropdown -->
+      <div class="col-md-6 mb-3">
+        <label for="transportationTypeID" class="form-label">Transportation Type</label>
+        <select id="transportationTypeID" [(ngModel)]="newTransportationItem.transportationTypeID" name="transportationTypeID" class="form-select" required>
+          <option value="" disabled selected>Select Transportation Type</option>
+          <option *ngFor="let type of transportationTypes" [value]="type.transportationTypeID">
+            {{ type.typeName }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Transportation Category Dropdown -->
+      <div class="col-md-6 mb-3">
+        <label for="transportationCatagoryID" class="form-label">Transportation Category</label>
+        <select id="transportationCatagoryID" [(ngModel)]="newTransportationItem.transportationCatagoryID" name="transportationCatagoryID" class="form-select" required>
+          <option value="" disabled selected>Select Transportation Category</option>
+          <option *ngFor="let category of transportationCategories" [value]="category.transportationCatagoryID">
+            {{ category.transportationCatagoryName }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Transportation ID Input -->
+      <div class="col-md-6 mb-3">
+        <label for="transportationID" class="form-label">Transportation ID</label>
+        <input type="number" id="transportationID" [(ngModel)]="newTransportationItem.transportationID" name="transportationID" class="form-control" required>
+      </div>
+
+      <!-- Seats Booked Input -->
+      <div class="col-md-6 mb-3">
+        <label for="seatBooked" class="form-label">Seats Booked</label>
+        <input type="number" id="seatBooked" [(ngModel)]="newTransportationItem.seatBooked" name="seatBooked" class="form-control" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Cost Per Head Input -->
+      <div class="col-md-6 mb-3">
+        <label for="perHeadTransportCost" class="form-label">Cost Per Head</label>
+        <input type="number" id="perHeadTransportCost" [(ngModel)]="newTransportationItem.perHeadTransportCost" name="perHeadTransportCost" class="form-control" required>
+      </div>
+
+      <!-- Description Input -->
+      <div class="col-md-6 mb-3">
+        <label for="packageTransportationDescription" class="form-label">Description</label>
+        <input type="text" id="packageTransportationDescription" [(ngModel)]="newTransportationItem.packageTransportationDescription" name="packageTransportationDescription" class="form-control" required>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center ">
+      <!-- Submit Buttons -->
+      <button type="submit" class="btn btn-secondary m-2">Add More</button>
+      <button type="button" (click)="SaveExit()" class="btn btn-primary m-2">Save and Add Exit</button>
+    </div>
+  </form>
+
+  <h3 class="mt-4">Package Transportation Items</h3>
+  <table class="table table-bordered mt-3">
+    <thead class="table-light">
+      <tr>
+        <th>Transportation Type</th>
+        <th>Transportation Category</th>
+        <th>Package ID</th>
+        <th>Transportation ID</th>
+        <th>Seats Booked</th>
+        <th>Cost Per Head</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of prevTransport">
+        <td>{{ getTransportationTypeName(item.transportationTypeID) }}</td>
+        <td>{{ getTransportationCategoryName(item.transportationCatagoryID) }}</td>
+        <td>{{ item.packageID }}</td>
+        <td>{{ item.transportationID }}</td>
+        <td>{{ item.seatBooked }}</td>
+        <td>{{ item.perHeadTransportCost }}</td>
+        <td>{{ item.packageTransportationDescription }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,93 @@
+<!-- Loading Spinner -->
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center vh-100">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<!-- Update Form -->
+<div *ngIf="!isLoading" class="container mt-5">
+  <h2 class="mb-4 text-center">Update Package Details</h2>
+
+  <form [formGroup]="packageDetailsForm" (ngSubmit)="onSubmit()" class="p-4 shadow-sm"
+    style="background-color: #f8f9fa; border-radius: 8px;">
+
+    <!-- Package Duration -->
+    <div class="mb-4">
+      <label for="packageDuration" class="form-label">Package Duration</label>
+      <input type="number" id="packageDuration" class="form-control shadow-sm" formControlName="packageDuration"
+        required placeholder="Enter package duration" />
+      <div
+        *ngIf="packageDetailsForm.controls['packageDuration'].invalid && packageDetailsForm.controls['packageDuration'].touched"
+        class="text-danger">
+        Duration is required.
+      </div>
+    </div>
+
+    <!-- Start Date -->
+    <div class="mb-4">
+      <label for="startDate" class="form-label">Start Date</label>
+      <input type="date" id="startDate" class="form-control shadow-sm" formControlName="startDate" required />
+      <div *ngIf="packageDetailsForm.controls['startDate'].invalid && packageDetailsForm.controls['startDate'].touched"
+        class="text-danger">
+        Start Date is required.
+      </div>
+    </div>
+
+    <!-- End Date -->
+    <div class="mb-4">
+      <label for="endDate" class="form-label">End Date</label>
+      <input type="date" id="endDate" class="form-control shadow-sm" formControlName="endDate" required />
+      <div *ngIf="packageDetailsForm.controls['endDate'].invalid && packageDetailsForm.controls['endDate'].touched"
+        class="text-danger">
+        End Date is required.
+      </div>
+    </div>
+
+    <!-- Pickup Point -->
+    <div class="mb-4">
+      <label for="pickupPoint" class="form-label">Pickup Point</label>
+      <input type="text" id="pickupPoint" class="form-control shadow-sm" formControlName="pickupPoint" required
+        placeholder="Enter pickup point" />
+      <div
+        *ngIf="packageDetailsForm.controls['pickupPoint'].invalid && packageDetailsForm.controls['pickupPoint'].touched"
+        class="text-danger">
+        Pickup Point is required.
+      </div>
+    </div>
+
+    <!-- Maximum Person -->
+    <div class="mb-4">
+      <label for="maximumPerson" class="form-label">Maximum Person</label>
+      <input type="number" id="maximumPerson" class="form-control shadow-sm" formControlName="maximumPerson" required
+        min="1" placeholder="Enter maximum number of persons" />
+      <div
+        *ngIf="packageDetailsForm.controls['maximumPerson'].invalid && packageDetailsForm.controls['maximumPerson'].touched"
+        class="text-danger">
+        Maximum Person is required and must be at least 1.
+      </div>
+    </div>
+
+    <!-- Minimum Person -->
+    <div class="mb-4">
+      <label for="minimumPerson" class="form-label">Minimum Person</label>
+      <input type="number" id="minimumPerson" class="form-control shadow-sm" formControlName="minimumPerson" required
+        min="1" placeholder="Enter minimum number of persons" />
+      <div
+        *ngIf="packageDetailsForm.controls['minimumPerson'].invalid && packageDetailsForm.controls['minimumPerson'].touched"
+        class="text-danger">
+        Minimum Person is required and must be at least 1.
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary shadow-sm px-4" [disabled]="packageDetailsForm.invalid">
+        <i class="bi bi-arrow-repeat"></i> Update Package
+      </button>
+      <a routerLink="/packagedetails/get/:packageId" class="btn btn-secondary shadow-sm px-4">
+        <i class="bi bi-x-circle"></i> Cancel
+      </a>
+    </div>
+  </form>
+</div>

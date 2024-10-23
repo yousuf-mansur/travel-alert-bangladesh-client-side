@@ -1,0 +1,24 @@
+<!-- package-create.component.html -->
+<form [formGroup]="packageForm" (ngSubmit)="onSubmit()" class="container mt-4">
+    <div class="mb-3">
+        <label for="packageTitle" class="form-label">Package Title</label>
+        <input id="packageTitle" formControlName="packageTitle" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="packageDescription" class="form-label">Package Description</label>
+        <textarea id="packageDescription" formControlName="packageDescription" class="form-control" required></textarea>
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" id="isAvailable" formControlName="isAvailable" class="form-check-input" />
+        <label for="isAvailable" class="form-check-label">Is Available</label>
+    </div>
+    <div class="mb-3">
+        <label for="packageCategoryID" class="form-label">Package Category ID</label>
+        <input id="packageCategoryID" formControlName="packageCategoryID" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="packageSubCategoryID" class="form-label">Package SubCategory ID </label>
+        <input id="packageSubCategoryID" formControlName="packageSubCategoryID" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="packageForm.invalid">Create Package</button>
+</form>

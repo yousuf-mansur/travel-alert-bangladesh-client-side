@@ -1,0 +1,30 @@
+<div class="card mt-3">
+    <div class="card-header">
+        <h2 class="float-start">Tour Package Category List</h2>
+        <a class="btn btn-primary float-end" routerLink="/add-category">add Category</a>
+    </div>
+    <div class="card-body">
+        <table class="table-striped table-bordered table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categories">
+                    <td>{{ category.packageCategoryID }}</td>
+                    <td>{{ category.categoryName }}</td>
+                    <td>{{ category.description }}</td>
+                    <td>
+                        <a [routerLink]="['/update-category', category.packageCategoryID]" class="btn btn-primary me-1">Edit</a>
+
+                        <button class="btn btn-danger" (click)="deleteCategory(category.packageCategoryID)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

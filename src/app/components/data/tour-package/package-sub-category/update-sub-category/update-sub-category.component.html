@@ -1,0 +1,20 @@
+<form [formGroup]="subCategoryForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="subCategoryName">Sub-Category Name:</label>
+      <input type="text" class="form-control" id="subCategoryName" formControlName="SubCategoryName" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea class="form-control" id="description" formControlName="Description" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="packageCategory">Category:</label>
+      <select class="form-control" id="packageCategory" formControlName="PackageCategoryID" required>
+        <option *ngFor="let category of categories" [value]="category.packageCategoryID">
+          {{ category.categoryName }}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+  

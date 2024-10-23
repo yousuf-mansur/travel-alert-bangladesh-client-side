@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-center" style="background: linear-gradient(135deg, #5ffaff, #feb47b); padding: 10px;" >Update Meal Type</h2>
+
+  <form (ngSubmit)="updateMealType()" class="p-4 shadow-sm" style="background-color: #f8f9fa; border-radius: 8px;">
+    <!-- Meal Type Name -->
+    <div class="mb-4">
+      <label for="name" class="form-label">Meal Type Name:</label>
+      <input 
+        type="text" 
+        id="name" 
+        [(ngModel)]="mealType.typeName" 
+        name="name" 
+        required 
+        class="form-control shadow-sm" 
+        placeholder="Enter meal type name"
+      />
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-success shadow-sm px-4">
+        <i class="bi bi-save"></i> Update Meal Type
+      </button>
+      <a routerLink="/mealTypes" class="btn btn-secondary shadow-sm px-4">
+        <i class="bi bi-x-circle"></i> Cancel
+      </a>
+    </div>
+  </form>
+</div>

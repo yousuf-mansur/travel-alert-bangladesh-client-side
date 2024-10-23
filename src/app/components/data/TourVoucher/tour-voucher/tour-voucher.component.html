@@ -1,0 +1,44 @@
+<!-- tour-voucher.component.html -->
+<div class="container">
+    <h2>Tour Vouchers</h2>
+  
+    <!-- Form to add new tour voucher -->
+    <form [formGroup]="tourVoucherForm" (ngSubmit)="submitTourVoucher()">
+      <div class="form-group">
+        <label for="tourVoucherCode">Tour Voucher Code</label>
+        <input type="text" id="tourVoucherCode" class="form-control" formControlName="tourVoucherCode" />
+      </div>
+  
+      <div class="form-group">
+        <label for="voucherFile">Upload Voucher File</label>
+        <input type="file" id="voucherFile" class="form-control" (change)="onFileSelected($event)" />
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!tourVoucherForm.valid">Add Tour Voucher</button>
+    </form>
+  
+    <hr />
+  
+    
+    <!-- List of tour vouchers -->
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let voucher of tourVouchers">
+          <div class="d-flex align-items-center">
+            <!-- Display Voucher Image -->
+            <div class="me-3">
+              <img *ngIf="voucher.voucherUrl" [src]="voucher.voucherUrl" alt="Voucher Image" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
+            </div>
+            <div class="flex-grow-1">
+              <strong>{{ voucher.tourVoucherCode }}</strong>
+              <div *ngIf="voucher.voucherUrl">
+                <a [href]="voucher.voucherUrl" target="_blank" class="btn btn-link">View Voucher</a>
+              </div>
+            </div>
+            <button class="btn btn-danger btn-sm" (click)="deleteTourVoucher(voucher.tourVoucherID)">Delete</button>
+          </div>
+        </li>
+      </ul>
+      
+      
+  </div>
+  {{tourVouchers|json}}

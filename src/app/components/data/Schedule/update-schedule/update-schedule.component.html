@@ -1,0 +1,59 @@
+<p>update-schedule works!</p>
+<div class="container">
+    <h2>Update Schedule</h2>
+    <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="tourVoucherID">Tour Voucher ID</label>
+        <input id="tourVoucherID" type="number" class="form-control" formControlName="tourVoucherID">
+      </div>
+  
+      <div class="form-group">
+        <label for="scheduleTitle">Schedule Title</label>
+        <input id="scheduleTitle" type="text" class="form-control" formControlName="scheduleTitle">
+      </div>
+  
+      <div class="form-group">
+        <label for="scheduleDescription">Schedule Description</label>
+        <textarea id="scheduleDescription" class="form-control" formControlName="scheduleDescription"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="packageID">Package ID</label>
+        <input id="packageID" type="number" class="form-control" formControlName="packageID">
+      </div>
+  
+      <div class="form-group">
+        <label for="dayNumber">Day Number</label>
+        <input id="dayNumber" type="number" class="form-control" formControlName="dayNumber">
+      </div>
+  
+      <div class="form-group">
+        <label for="tentativeTime">Tentative Time</label>
+        <input id="tentativeTime" type="datetime-local" class="form-control" formControlName="tentativeTime">
+      </div>
+  
+      <div class="form-group">
+        <label for="actualTime">Actual Time</label>
+        <input id="actualTime" type="datetime-local" class="form-control" formControlName="actualTime">
+      </div>
+  
+      <div class="form-group">
+        <label for="tentativeCost">Tentative Cost</label>
+        <input id="tentativeCost" type="number" class="form-control" formControlName="tentativeCost">
+      </div>
+  
+      <div class="form-group">
+        <label for="actualCost">Actual Cost</label>
+        <input id="actualCost" type="number" class="form-control" formControlName="actualCost">
+      </div>
+  
+      <div class="form-group">
+        <label for="dayCostCategoryID">Day Cost Category ID</label>
+        <input id="dayCostCategoryID" type="number" class="form-control" formControlName="dayCostCategoryID">
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Update Schedule</button>
+    </form>
+  </div>
+  
