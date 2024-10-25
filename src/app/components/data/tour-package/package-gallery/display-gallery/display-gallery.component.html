@@ -1,0 +1,140 @@
+<div class="container">
+
+  <div *ngIf="!galleries || galleries.length === 0" class="text-center mt-4">
+    <p>No galleries available for this package.</p>
+    <button (click)="addGallery()" class="btn btn-primary">Add Gallery</button>
+  </div>
+
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+
+
+
+
+
+  <div *ngIf="!loading && !errorMessage">
+    <div *ngIf="galleries && galleries.length > 0">
+      <h2>{{ packageTitle }}</h2>
+      <div class="gallery-grid">
+        <div *ngFor="let gallery of galleries" class="gallery-item">
+          <div class="image-container">
+            <img [src]="getFullImageUrl(gallery.imageUrl)" [alt]="gallery.imageCaption"
+              (error)="handleImageError(gallery)" [hidden]="gallery.imageError" class="gallery-image" />
+            <div *ngIf="gallery.imageError" class="error-placeholder">
+              Image not available
+            </div>
+          </div>
+          <div class="image-caption" *ngIf="gallery.imageCaption">
+            {{ gallery.imageCaption }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!galleries || galleries.length === 0" class="text-center mt-4">
+      <p>No galleries available for this package.</p>
+      <button (click)="addGallery()" class="btn btn-primary">Add Gallery</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && !errorMessage">
+    <div *ngIf="galleries && galleries.length > 0">
+      <h2>{{ packageTitle }}</h2>
+      <div class="gallery">
+        <div *ngFor="let gallery of galleries" class="gallery-item">
+          Using ng-container for better error handling -->
+<!-- <ng-container *ngIf="!gallery.imageError; else errorTpl">
+            <img [src]="gallery.imageUrl" [alt]="gallery.imageCaption || 'Gallery Image'" class="img-fluid"
+              (error)="handleImageError(gallery)" /> -->
+<!-- </ng-container> -->
+
+<!-- <ng-template #errorTpl>
+            <div class="image-error-container">
+              <span class="image-error-text">Image failed to load</span>
+            </div>
+          </ng-template>
+
+          <div *ngIf="gallery.imageCaption" class="image-caption">
+            {{ gallery.imageCaption }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!galleries || galleries.length === 0" class="text-center mt-4">
+      <p>No galleries available for this package.</p>
+      <button (click)="addGallery()" class="btn btn-primary">Add Gallery</button>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+<!-- <div *ngIf="errorMessage; else galleryContent">
+    <p class="error">{{ errorMessage }}</p>
+  </div> -->
+
+<!-- <ng-template #galleryContent>
+    <div *ngIf="galleries.length > 0; else noGalleries">
+      <h2>{{ packageTitle }}</h2>
+      <div class="gallery">
+        <img 
+          *ngFor="let gallery of galleries" 
+          [src]="formatImageUrl(gallery.imageUrl)" 
+          alt="Gallery Image" 
+          style="max-width: 100%; height: auto;" 
+        />
+      </div>
+    </div>
+    <ng-template #noGalleries>
+      <p>{{ errorMessage }}</p>
+    </ng-template>
+    
+  </ng-template> -->
+
+<!-- <ng-template #noGalleries>
+    <p>No galleries available for this package.</p> -->
+
+<!-- Hidden input field for packageId when no galleries are available -->
+<!-- <input type="hidden" [value]="packageId" />
+  
+    <button (click)="addGallery()" class="btn btn-primary">Add Gallery</button> Button when no galleries available -->
+<!-- </ng-template>
+   -->

@@ -1,0 +1,40 @@
+<div *ngIf="model">
+    <h2>Edit Package Details: {{ model.packageTitle }}</h2>
+  
+    <form (ngSubmit)="updatePackageDetails()">
+      <div class="form-group">
+        <label for="packageDuration">Package Duration</label>
+        <input type="text" [(ngModel)]="model.packageDuration" name="packageDuration" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input type="date" [(ngModel)]="model.startDate" name="startDate" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input type="date" [(ngModel)]="model.endDate" name="endDate" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="pickupPoint">Pickup Point</label>
+        <input type="text" [(ngModel)]="model.pickupPoint" name="pickupPoint" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="maximumPerson">Maximum Persons</label>
+        <input type="number" [(ngModel)]="model.maximumPerson" name="maximumPerson" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="minimumPerson">Minimum Persons</label>
+        <input type="number" [(ngModel)]="model.minimumPerson" name="minimumPerson" class="form-control" />
+      </div>
+  
+      <button type="submit" class="btn btn-success">Update Details</button>
+    </form>
+  
+    <div *ngIf="successMessage" class="alert alert-success mt-2">{{ successMessage }}</div>
+  </div>
+  

@@ -56,16 +56,20 @@
         aria-controls="packageManagementMenu"
         class="nav-link link-dark d-flex justify-content-between align-items-center">
         <span>
-          <i class="bi bi-box me-2"></i> Package Management
+          <i class="bi bi-box"></i>
+          Package Management
         </span>
         <i class="bi bi-chevron-down"></i>
       </a>
       <div class="collapse" id="packageManagementMenu">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><a class="nav-link link-dark ms-4" routerLink="/categories">Categories</a></li>
-          <li><a class="nav-link link-dark ms-4" routerLink="/sub-categories">Sub Categories</a></li>
-          <li><a class="nav-link link-dark ms-4" routerLink="/package/add/">Add Package</a></li>
-          <li><a class="nav-link link-dark ms-4" routerLink="/packagedetails/get/:packageId">Package Details</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/sub/categories">Sub Categories</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/packages">Packages</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/add/package">Create Package</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/get/package/details">Package Details</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="/get/package/gallery/:packageId">Package Gallery</a></li>
+          <li><a class="nav-link link-dark ms-4" routerLink="add/package/facility">Add Facilities</a></li>
 
           <li><a class="nav-link link-dark ms-4" routerLink="/packageincludes/get/:packageId">Package Includes</a></li>
           <li><a class="nav-link link-dark ms-4" routerLink="/packageexcludes/get/:packageId">Package Excludes</a></li>

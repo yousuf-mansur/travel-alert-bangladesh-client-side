@@ -1,0 +1,35 @@
+<div>
+    <h2>Add Package Details</h2>
+    <form (ngSubmit)="addPackageDetails()">
+      <div class="form-group">
+        <label for="packageDuration">Package Duration</label>
+        <input type="text" id="packageDuration" class="form-control" [(ngModel)]="model.packageDuration" name="packageDuration" />
+      </div>
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input type="date" id="startDate" class="form-control" [(ngModel)]="model.startDate" name="startDate" />
+      </div>
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" class="form-control" [(ngModel)]="model.endDate" name="endDate" />
+      </div>
+      <div class="form-group">
+        <label for="pickupPoint">Pickup Point</label>
+        <input type="text" id="pickupPoint" class="form-control" [(ngModel)]="model.pickupPoint" name="pickupPoint" />
+      </div>
+      <div class="form-group">
+        <label for="maximumPerson">Maximum Persons</label>
+        <input type="number" id="maximumPerson" class="form-control" [(ngModel)]="model.maximumPerson" name="maximumPerson" />
+      </div>
+      <div class="form-group">
+        <label for="minimumPerson">Minimum Persons</label>
+        <input type="number" id="minimumPerson" class="form-control" [(ngModel)]="model.minimumPerson" name="minimumPerson" />
+      </div>
+      <button type="submit" class="btn btn-success">Add Details</button>
+    </form>
+  
+    <div *ngIf="successMessage">
+      <p class="alert alert-success">{{ successMessage }}</p>
+    </div>
+  </div>
+  

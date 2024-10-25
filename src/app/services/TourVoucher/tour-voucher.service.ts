@@ -8,32 +8,32 @@ import { TourVoucher } from '../../models/TourVoucher/tour-voucher';
   providedIn: 'root',
 })
 export class TourVoucherService {
-  private baseUrl = 'http://localhost:5148/api/Package';
+  private baseUrl = 'http://localhost:5148/api/Voucher';
 
   constructor(private http: HttpClient) {}
 
   // Get all tour vouchers
   getTourVouchers(): Observable<TourVoucher[]> {
-    return this.http.get<TourVoucher[]>(`${this.baseUrl}/get-tour-vouchers`);
+    return this.http.get<TourVoucher[]>(`${this.baseUrl}/get`);
   }
 
   // Get tour voucher by ID
   getTourVoucherById(id: number): Observable<TourVoucher> {
-    return this.http.get<TourVoucher>(`${this.baseUrl}/get-tour-voucher/${id}`);
+    return this.http.get<TourVoucher>(`${this.baseUrl}/get/${id}`);
   }
 
   // Add new tour voucher
   addTourVoucher(formData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/add-tour-voucher`, formData);
+    return this.http.post(`${this.baseUrl}/add`, formData);
   }
 
   // Update tour voucher
   updateTourVoucher(id: number, formData: FormData): Observable<any> {
-    return this.http.put(`${this.baseUrl}/update-tour-voucher/${id}`, formData);
+    return this.http.put(`${this.baseUrl}/edit/${id}`, formData);
   }
 
   // Delete tour voucher
   deleteTourVoucher(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/delete-tour-voucher/${id}`);
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 }

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { DisplayUserComponent } from './components/data/user/display-user/display-user.component';
 import { AddUserComponent } from './components/data/user/add-user/add-user.component';
-import { AddCategoryComponent } from './components/data/tour-package/package-category/add-category/add-category/add-category.component';
 import { ShowCategoryComponent } from './components/data/tour-package/package-category/show-category/show-category.component';
 import { UpdateCategoryComponent } from './components/data/tour-package/package-category/update-category/update-category.component';
 import { ShowSubCategoryComponent } from './components/data/tour-package/package-sub-category/show-sub-category/show-sub-category.component';
@@ -21,9 +20,6 @@ import { StateEditComponent } from './components/data/State/state-edit/state-edi
 import { CostEstimateFormComponentComponent } from './components/data/PackageBudget/cost-estimate-form-component/cost-estimate-form-component.component';
 import { GetPackageDetailsComponent } from './components/data/PackageBudget/get-package-details/get-package-details.component';
 import { TourVoucherComponent } from './components/data/TourVoucher/tour-voucher/tour-voucher.component';
-import { ScheduleListComponent } from './components/data/Schedule/schedule-list/schedule-list.component';
-import { AddScheduleComponent } from './components/data/Schedule/add-schedule/add-schedule.component';
-import { UpdateScheduleComponent } from './components/data/Schedule/update-schedule/update-schedule.component';
 import { FacilityListComponent } from './components/data/Facilities/facility-list/facility-list.component';
 import { FacilityCreateComponent } from './components/data/Facilities/facility-create/facility-create.component';
 import { FacilityEditComponent } from './components/data/Facilities/facility-edit/facility-edit.component';
@@ -56,10 +52,6 @@ import { EditLocationComponent } from './components/data/Location/location/edit-
 import { LocationGallerylistComponent } from './components/data/Location/location-gallery/location-gallerylist/location-gallerylist.component';
 import { AddLocationGalleryComponent } from './components/data/Location/location-gallery/add-location-gallery/add-location-gallery.component';
 import { UpdateLocationgalleryComponent } from './components/data/Location/location-gallery/update-locationgallery/update-locationgallery.component';
-
-import { AddPackageDetailsComponent } from './components/data/PackageDetails/add-package-details/add-package-details.component';
-
-import { PackageCreateComponent } from './components/data/Package/package-create/package-create.component';
 import { ViewTransportationComponent } from './components/data/Transport/transportation/view-transportation/view-transportation.component';
 import { AddTransportationComponent } from './components/data/Transport/transportation/add-transportation/add-transportation.component';
 import { EditTransportationComponent } from './components/data/Transport/transportation/edit-transportation/edit-transportation.component';
@@ -68,50 +60,46 @@ import { AddTransportationCatagoryComponent } from './components/data/Transport/
 import { EditTransportationCatagoryComponent } from './components/data/Transport/transportationCatagory/edit-transportation-catagory/edit-transportation-catagory.component';
 import { CreateUrlComponent } from './components/data/UrlService/create-url/create-url.component';
 import { UrlListComponent } from './components/data/UrlService/url-list/url-list.component';
-import { ViewPackageDetailsComponent } from './components/data/PackageDetails/view-package-details/view-package-details.component';
 import { ViewRoomComponent } from './components/data/room/view-room/view-room.component';
 import { AddRoomComponent } from './components/data/room/add-room/add-room.component';
 import { EditRoomComponent } from './components/data/room/edit-room/edit-room.component';
-import { PackageAccommodationComponent } from './components/data/package-accommodation/package-accommodation/package-accommodation.component';
 import { GetAccommodationComponent } from './components/data/package-accommodation/get-accommodation/get-accommodation.component';
 import { ViewPackageIncludesComponent } from './components/data/PackageIncludes/view-package-includes/view-package-includes.component';
-import { AddPackageIncludesComponent } from './components/data/PackageIncludes/add-package-includes/add-package-includes.component';
 import { UpdatePackageIncludesComponent } from './components/data/PackageIncludes/update-package-includes/update-package-includes.component';
 import { ViewPackageExcludesComponent } from './components/data/PackageExcludes/view-package-excludes/view-package-excludes.component';
-import { AddPackageExcludesComponent } from './components/data/PackageExcludes/add-package-excludes/add-package-excludes.component';
 import { UpdatePackageExcludesComponent } from './components/data/PackageExcludes/update-package-excludes/update-package-excludes.component';
-import { UpdatePackageDetailsComponent } from './components/data/PackageDetails/update-package-details/update-package-details.component';
+import { PackageDisplayComponent } from './components/data/tour-package/packages/show-packages/show-packages.component';
+import { AddPackageComponent } from './components/data/tour-package/packages/add-package/add-package.component';
+import { DisplayGalleryComponent } from './components/data/tour-package/package-gallery/display-gallery/display-gallery.component';
+import { DisplayDetailsComponent } from './components/data/tour-package/package-details/display-details/display-details.component';
+import { AddDetailsComponent } from './components/data/tour-package/package-details/add-details/add-details.component';
+import { AddGalleryComponent } from './components/data/tour-package/package-gallery/add-gallery/add-gallery.component';
+import { DisplayScheduleComponent } from './components/data/tour-package/package-schedules/display-schedule/display-schedule.component';
+import { UpdateScheduleComponent } from './components/data/tour-package/package-schedules/update-schedule/update-schedule.component';
+import { AddCategoryComponent } from './components/data/tour-package/package-category/add-category/add-category.component';
 
 export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'users', component: DisplayUserComponent },
   { path: 'add-user', component: AddUserComponent },
   { path: 'categories', component: ShowCategoryComponent },
-  { path: 'add-category', component: AddCategoryComponent },
-  { path: 'update-category/:id', component: UpdateCategoryComponent },
-  { path: 'sub-categories', component: ShowSubCategoryComponent },
-  { path: 'add-sub-category', component: AddSubCategoryComponent },
-  { path: 'update-sub-category/:id', component: UpdateSubCategoryComponent },
-
-  { path: 'package/add', component: PackageCreateComponent },
-
+  { path: 'add/category', component: AddCategoryComponent },
+  { path: 'update/category/:id', component: UpdateCategoryComponent },
+  { path: 'sub/categories', component: ShowSubCategoryComponent },
+  { path: 'add/sub/category', component: AddSubCategoryComponent },
+  { path: 'update/sub/category/:id', component: UpdateSubCategoryComponent },
+  { path: 'packages', component: PackageDisplayComponent },
+  { path: 'add/package', component: AddPackageComponent },
+  { path: 'galleries/:packageId', component: DisplayGalleryComponent },
+  { path: 'package/details/:packageId', component: DisplayDetailsComponent },
+  { path: 'add/package/details/:packageId', component: AddDetailsComponent },
   {
-    path: 'packagedetails/add',
-    loadComponent: () =>
-      import(
-        '../app/components/data/PackageDetails/add-package-details/add-package-details.component'
-      ).then((m) => m.AddPackageDetailsComponent),
+    path: 'get/package/gallery/:packageId',
+    component: DisplayGalleryComponent,
   },
-
-  {
-    path: 'packagedetails/get/:packageId',
-    component: ViewPackageDetailsComponent,
-  },
-  {
-    path: 'packagedetails/update/:packageId',
-    component: UpdatePackageDetailsComponent,
-  },
-
+  { path: 'add/gallery/:packageId', component: AddGalleryComponent },
+  { path: 'package/schedules/:packageId', component: DisplayScheduleComponent },
+  { path: 'edit/schedule/:packageId', component: UpdateScheduleComponent },
   {
     path: 'packageincludes/add',
     loadComponent: () =>
@@ -157,9 +145,6 @@ export const routes: Routes = [
   { path: 'package/addBudget', component: CostEstimateFormComponentComponent },
   { path: 'package/addBudget/:id', component: GetPackageDetailsComponent },
   { path: 'package/voucher', component: TourVoucherComponent },
-  { path: 'schedule', component: ScheduleListComponent },
-  { path: 'schedule/add/:id', component: AddScheduleComponent },
-  { path: 'schedule/add', component: AddScheduleComponent },
   { path: 'schedule/edit/:id', component: UpdateScheduleComponent },
 
   { path: 'facility', component: FacilityListComponent },

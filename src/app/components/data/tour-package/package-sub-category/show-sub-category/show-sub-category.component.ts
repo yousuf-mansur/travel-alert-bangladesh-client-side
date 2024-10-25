@@ -1,55 +1,53 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Add this import for CommonModule
+import { PackageSubCategory } from '../../../../../models/categories/package-sub-category';
+import { PackageSubCategoryService } from '../../../../../services/categories/package-sub-category.service';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { PackageSubCategoryService } from '../../../../../services/categories/package-sub-category.service'; // Import the service
 
 @Component({
   selector: 'app-show-sub-category',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
   templateUrl: './show-sub-category.component.html',
-  styleUrls: ['./show-sub-category.component.css'] // Corrected from 'styleUrl'
+  styleUrls: ['./show-sub-category.component.css'],
+  standalone: true,
+  imports: [CommonModule, RouterModule], // Ensure CommonModule is included here
 })
 export class ShowSubCategoryComponent implements OnInit {
-  subCategories: any[] = []; // Array to hold the list of subcategories
+  subCategories: PackageSubCategory[] = [];
 
-  constructor(private subCategoryService: PackageSubCategoryService) {}
+  constructor(private packageSubCategoryService: PackageSubCategoryService) {}
 
   ngOnInit(): void {
-    this.loadSubCategories(); // Load the subcategories when the component is initialized
+    this.loadSubCategories();
   }
 
-  // Function to load all subcategories
-  
-  loadSubCategories(): void {
-    this.subCategoryService.getSubCategories().subscribe({
+  loadSubCategories() {
+    this.packageSubCategoryService.getAllSubCategories().subscribe({
       next: (data) => {
-        this.subCategories = data;
+        // Access the subcategories array within the $values property
+        this.subCategories = data.$values || [];
       },
-      error: (err) => {
-        console.error('Error fetching categories', err);
-      }
+      error: (error) => {
+        console.error('Error fetching subcategories', error);
+      },
     });
   }
 
-  
+  deleteSubCategory(id: number) {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this subcategory?'
+    );
 
-  deleteSubCategory(id: number): void {
-    if (confirm('Are you sure you want to delete this sub category?')) {
-      this.subCategoryService.deleteSubCategory(id).subscribe({
+    if (confirmed) {
+      this.packageSubCategoryService.deleteSubCategory(id).subscribe({
         next: () => {
-          this.loadSubCategories(); 
+          console.log('Subcategory deleted successfully');
+          this.loadSubCategories(); // Reload the list after deletion
         },
-        error: (err) => {
-          console.error('Error deleting category', err);
-
-        }
+        error: (error) => {
+          console.error('Error deleting subcategory', error);
+          alert('Failed to delete subcategory. Please try again.');
+        },
       });
     }
   }
-
-
 }

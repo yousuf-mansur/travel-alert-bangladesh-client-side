@@ -1,0 +1,49 @@
+<div class="container mt-4">
+    <h3>{{ packageTitle }} - Schedules</h3>
+  
+    <input type="hidden" [value]="packageId"> <!-- Hidden field for package ID -->
+  
+    <!-- Error Message -->
+
+  
+    <!-- Display schedules if available -->
+    <div *ngIf="schedules && schedules.length > 0; else noSchedules">
+      <table class="table table-bordered table-striped mt-3">
+        <thead>
+          <tr>
+            <th>Day Number</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Tentative Time</th>
+            <th>Actual Time</th>
+            <th>Tentative Cost</th>
+            <th>Actual Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let schedule of schedules">
+            <td>{{ schedule.dayNumber }}</td>
+            <td>{{ schedule.scheduleTitle }}</td>
+            <td>{{ schedule.scheduleDescription }}</td>
+            <td>{{ schedule.tentativeTime }}</td>
+            <td>{{ schedule.actualTime }}</td>
+            <td>{{ schedule.tentativeCost }}</td>
+            <td>{{ schedule.actualCost }}</td>
+            <td>
+                <!-- Edit and Delete buttons -->
+                <button class="btn btn-primary btn-sm" (click)="editSchedule(schedule.scheduleID)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteSchedule(schedule.scheduleID)">Delete</button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Fallback when no schedules are available -->
+    <ng-template #noSchedules>
+      <div class="alert alert-info mt-3">
+        No schedules found for this package.
+      </div>
+    </ng-template>
+  </div>
+  

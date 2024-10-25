@@ -1,0 +1,60 @@
+<div *ngIf="errorMessage; else packageContent">
+  <p class="error">{{ errorMessage }}</p>
+</div>
+
+<ng-template #packageContent>
+  <div *ngIf="packages.length > 0; else noPackages">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Package Title</th>
+          <th>Description</th>
+          <th>Availability</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let package of packages">
+          <td style="width: 2%;">{{ package.packageID }}</td>
+          <td style="width: 30%;">{{ package.packageTitle }}</td>
+          <td style="width: 35%;">{{ package.packageDescription }}</td>
+          <td style="width: 8%;">{{ package.isAvailable ? 'Available' : 'Not Available' }}</td>
+          <td style="width: 25%;">
+            <div class="dropdown float-start me-1">
+              <a href="#" class="btn btn-success dropdown-toggle" id="actionDropdown" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Addons
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="actionDropdown">
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/galleries', package.packageID]">Galleries</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/package/details', package.packageID]">Details</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/package/schedules', package.packageID]">Schedules</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Locations</a>
+                  <a class="dropdown-item" href="#">Accomudation</a>
+                </li>
+              </ul>
+            </div>
+            <a href="#" class="btn btn-primary me-1">Edit</a>
+            <a href="#" class="btn btn-danger">Delete</a>
+          </td>
+
+
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #noPackages>
+  <p>No packages available.</p>
+</ng-template>

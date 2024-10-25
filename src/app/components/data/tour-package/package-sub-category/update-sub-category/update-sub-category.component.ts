@@ -1,97 +1,94 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';  
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common'; // Import CommonModule
 import { PackageSubCategoryService } from '../../../../../services/categories/package-sub-category.service';
 import { PackageCategoryService } from '../../../../../services/categories/package-category.service';
-import { PackageCategoryListDTO } from './../../../../../models/categories/package-category';
-import { PackageSubCategoryListDTO } from './../../../../../models/categories/package-ubCategory-list-dto';
+import { PackageSubCategory } from '../../../../../models/categories/package-sub-category';
+import {
+  PackageCategoryListDTO,
+  PackageCategoryResponse,
+} from '../../../../../models/categories/package-category';
 
 @Component({
   selector: 'app-update-sub-category',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
+  standalone: true, // Mark as standalone
   templateUrl: './update-sub-category.component.html',
-  styleUrls: ['./update-sub-category.component.css']
+  styleUrls: ['./update-sub-category.component.css'],
+  imports: [ReactiveFormsModule, CommonModule], // Include CommonModule here
 })
 export class UpdateSubCategoryComponent implements OnInit {
   subCategoryForm: FormGroup;
-  categories: PackageCategoryListDTO[] = [];
-  subCategoryId!: number;
+  subCategoryID: number = 0; // Initialize with a default value
+  categories: PackageCategoryListDTO[] = []; // To store package categories
 
   constructor(
     private fb: FormBuilder,
+    private packageSubCategoryService: PackageSubCategoryService,
+    private packageCategoryService: PackageCategoryService,
     private route: ActivatedRoute,
-    private subCategoryService: PackageSubCategoryService,
-    private categoryService: PackageCategoryService,
     private router: Router
   ) {
     this.subCategoryForm = this.fb.group({
-      SubCategoryName: ['', Validators.required],
-      Description: ['', Validators.required],
-      PackageCategoryID: [null, Validators.required]
+      packageCategoryID: ['', Validators.required],
+      subCategoryName: ['', Validators.required],
+      description: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.subCategoryId = +this.route.snapshot.paramMap.get('id')!;
+    this.subCategoryID = +this.route.snapshot.params['id'];
     this.loadCategories();
     this.loadSubCategory();
   }
 
-  loadCategories() {
-    this.categoryService.getAllCategories().subscribe(
-      (data) => {
-        this.categories = data;
+  loadCategories(): void {
+    this.packageCategoryService.getAllCategories().subscribe({
+      next: (data: PackageCategoryResponse) => {
+        this.categories = data.categories.$values;
+        console.log('Fetched categories:', this.categories);
       },
-      (error) => {
-        console.error('Error fetching categories', error);
-      }
-    );
+      error: (err) => {
+        console.error('Error fetching categories', err);
+      },
+    });
   }
 
   loadSubCategory() {
-    this.subCategoryService.getSubCategoryById(this.subCategoryId).subscribe({
-      next: (data: PackageSubCategoryListDTO) => {
-        console.log(data); // Check the fetched data
-        this.subCategoryForm.patchValue({
-          SubCategoryName: data.subCategoryName,
-          Description: data.description,
-          PackageCategoryID: data.packageCategoryID
-        });
-      },
-      error: (error) => {
-        console.error('Error fetching sub-category', error);
-      }
-    });
+    this.packageSubCategoryService
+      .getSubCategoryById(this.subCategoryID)
+      .subscribe({
+        next: (data) => {
+          this.subCategoryForm.patchValue(data);
+        },
+        error: (error) => {
+          console.error('Error loading subcategory', error);
+        },
+      });
   }
-  
 
   onSubmit() {
     if (this.subCategoryForm.valid) {
-      // Map the form values to the expected DTO format
-      const updatedSubCategory: PackageSubCategoryListDTO = {
-        packageSubCategoryID: this.subCategoryId,  // ensure you have this ID
-        ...this.subCategoryForm.value
-      };
-  
-      this.subCategoryService.updateSubCategory(updatedSubCategory).subscribe({
-        next: (response) => {
-          console.log('Sub-Category updated successfully!', response);
-          this.router.navigate(['/sub-categories']); // Navigate back to the list
-        },
-        error: (error) => {
-          console.error('Error updating sub-category', error);
-        }
-      });
+      const formData: PackageSubCategory = this.subCategoryForm.value;
+      this.packageSubCategoryService
+        .updateSubCategory(this.subCategoryID, formData)
+        .subscribe({
+          next: (response) => {
+            console.log('Subcategory updated successfully!', response);
+            this.subCategoryForm.reset();
+            this.router.navigate(['/sub-categories']); // Navigate to the subcategory list
+          },
+          error: (error) => {
+            console.error('Error updating subcategory', error);
+          },
+        });
     } else {
       console.log('Form is invalid');
     }
   }
-  
-  
-
 }

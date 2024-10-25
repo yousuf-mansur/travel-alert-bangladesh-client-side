@@ -1,20 +1,26 @@
-<form [formGroup]="subCategoryForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="subCategoryName">Sub-Category Name:</label>
-      <input type="text" class="form-control" id="subCategoryName" formControlName="SubCategoryName" required>
-    </div>
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea class="form-control" id="description" formControlName="Description" required></textarea>
-    </div>
-    <div class="form-group">
-      <label for="packageCategory">Category:</label>
-      <select class="form-control" id="packageCategory" formControlName="PackageCategoryID" required>
+<div class="container mt-3">
+  <h2>Update Subcategory</h2>
+  <form [formGroup]="subCategoryForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="packageCategoryID" class="form-label">Package Category</label>
+      <select id="packageCategoryID" class="form-control" formControlName="packageCategoryID">
+        <option value="" disabled>Select a category</option>
         <option *ngFor="let category of categories" [value]="category.packageCategoryID">
           {{ category.categoryName }}
         </option>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Update</button>
+
+    <div class="mb-3">
+      <label for="subCategoryName" class="form-label">Subcategory Name</label>
+      <input type="text" id="subCategoryName" class="form-control" formControlName="subCategoryName" />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" class="form-control" formControlName="description"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Subcategory</button>
   </form>
-  
+</div>

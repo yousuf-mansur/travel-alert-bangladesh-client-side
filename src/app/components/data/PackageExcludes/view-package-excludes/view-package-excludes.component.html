@@ -16,7 +16,7 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Package ID</th>
+          <th>Exclude ID</th>
           <th>Exclude Description</th>
           <th>Actions</th>
         </tr>
@@ -24,7 +24,7 @@
       <tbody>
         <tr *ngFor="let excludes of packageExcludes;let i = index">
           <td>{{ i + 1 }}</td>
-          <td>{{ excludes.packageID }}</td>
+          <td>{{ excludes.excludeID }}</td>
           <td>{{ excludes.excludeDescription }}</td>
           <td>
             <!-- Add a button to delete package includes -->

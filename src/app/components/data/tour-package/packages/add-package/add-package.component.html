@@ -1,0 +1,37 @@
+<div class="container">
+    <form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="packageTitle" class="form-label">Package Title</label>
+        <input type="text" id="packageTitle" formControlName="packageTitle" class="form-control" />
+      </div>
+      
+      <div class="mb-3">
+        <label for="packageDescription" class="form-label">Package Description</label>
+        <textarea id="packageDescription" formControlName="packageDescription" class="form-control"></textarea>
+      </div>
+  
+      <div class="mb-3">
+        <label for="isAvailable" class="form-label">Is Available</label>
+        <input type="checkbox" id="isAvailable" formControlName="isAvailable" class="form-check-input" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="packageCategoryID" class="form-label">Package Category</label>
+        <select id="packageCategoryID" formControlName="packageCategoryID" class="form-select">
+          <option value="" disabled>Select a category</option>
+          <option *ngFor="let category of categories" [value]="category.packageCategoryID">{{ category.categoryName }}</option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label for="packageSubCategoryID" class="form-label">Package Subcategory</label>
+        <select id="packageSubCategoryID" formControlName="packageSubCategoryID" class="form-select">
+          <option value="" disabled>Select a subcategory</option>
+          <option *ngFor="let subCategory of subCategories" [value]="subCategory.packageSubCategoryID">{{ subCategory.subCategoryName }}</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Save Package and Add Gallery</button>
+    </form>
+  </div>
+  

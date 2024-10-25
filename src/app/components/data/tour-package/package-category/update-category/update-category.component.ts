@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';  // <--- Import ReactiveFormsModule
-import { CommonModule } from '@angular/common';  // Import CommonModule for template features like ngIf, ngFor
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { PackageCategoryService } from '../../../../../services/categories/package-category.service';
 import { PackageCategoryDTO } from '../../../../../models/categories/create-category';
 
@@ -9,10 +14,7 @@ import { PackageCategoryDTO } from '../../../../../models/categories/create-cate
   selector: 'app-update-category',
   templateUrl: './update-category.component.html',
   styleUrls: ['./update-category.component.css'],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule   // <-- Ensure ReactiveFormsModule is imported
-  ],
+  imports: [CommonModule, ReactiveFormsModule],
   standalone: true,
 })
 export class UpdateCategoryComponent implements OnInit {
@@ -27,7 +29,7 @@ export class UpdateCategoryComponent implements OnInit {
   ) {
     this.categoryForm = this.fb.group({
       categoryName: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
     });
   }
 
@@ -38,12 +40,16 @@ export class UpdateCategoryComponent implements OnInit {
 
   loadCategory(): void {
     this.packageCategoryService.getCategoryById(this.categoryId).subscribe({
-      next: (category) => {
-        this.categoryForm.patchValue(category);
+      next: (response) => {
+        const category = response.category; // Extract category data
+        this.categoryForm.patchValue({
+          categoryName: category.categoryName,
+          description: category.description,
+        });
       },
       error: (err) => {
         console.error('Error fetching category', err);
-      }
+      },
     });
   }
 
@@ -51,17 +57,19 @@ export class UpdateCategoryComponent implements OnInit {
     if (this.categoryForm.valid) {
       const formData: PackageCategoryDTO = {
         ...this.categoryForm.value,
-        PackageCategoryID: this.categoryId
+        packageCategoryID: this.categoryId, // Make sure this matches the API input
       };
-      this.packageCategoryService.updateCategory(this.categoryId, formData).subscribe({
-        next: () => {
-          console.log('Category updated successfully!');
-          this.router.navigate(['/categories']);
-        },
-        error: (error) => {
-          console.error('Error updating category', error);
-        }
-      });
+      this.packageCategoryService
+        .updateCategory(this.categoryId, formData)
+        .subscribe({
+          next: () => {
+            console.log('Category updated successfully!');
+            this.router.navigate(['/categories']);
+          },
+          error: (error) => {
+            console.error('Error updating category', error);
+          },
+        });
     } else {
       console.log('Form is invalid');
     }

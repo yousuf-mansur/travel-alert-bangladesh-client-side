@@ -1,0 +1,24 @@
+<div *ngIf="packageDetails">
+    <h2>Package Title: {{ packageDetails.packageTitle }}</h2>
+    <input type="hidden" value="{{ packageDetails.packageID }}" />
+
+    <h3>Details</h3>
+    <ul>
+        <li><strong>Package Duration:</strong> {{ packageDetails.packageDuration }}</li>
+        <li><strong>Start Date:</strong> {{ packageDetails.startDate }}</li>
+        <li><strong>End Date:</strong> {{ packageDetails.endDate }}</li>
+        <li><strong>Pickup Point:</strong> {{ packageDetails.pickupPoint }}</li>
+        <li><strong>Maximum Persons:</strong> {{ packageDetails.maximumPerson }}</li>
+        <li><strong>Minimum Persons:</strong> {{ packageDetails.minimumPerson }}</li>
+        <li><strong>Created At:</strong> {{ packageDetails.createdAt }}</li>
+        <li><strong>Updated At:</strong> {{ packageDetails.updatedAt }}</li>
+    </ul>
+
+    <a [routerLink]="['/edit/package/details', packageDetails.packageID]" class="btn btn-primary me-1">Edit</a>
+    <a [routerLink]="['/packages']" class="btn btn-primary ">Package List</a>
+</div>
+
+<div *ngIf="!packageDetails">
+    <p>No package details...</p>
+    <a [routerLink]="['/add/package/details', packageId]" class="btn btn-primary">Add Details</a>
+</div>
