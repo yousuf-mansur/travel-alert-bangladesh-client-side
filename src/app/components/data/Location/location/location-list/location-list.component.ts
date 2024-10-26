@@ -10,12 +10,15 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule, JsonPipe],
   templateUrl: './location-list.component.html',
-  styleUrl: './location-list.component.css'
+  styleUrl: './location-list.component.css',
 })
 export class LocationListComponent implements OnInit {
   locations: any[] = [];
 
-  constructor(private locationService: LocationService, private router: Router) { }
+  constructor(
+    private locationService: LocationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadLocations();
@@ -24,7 +27,7 @@ export class LocationListComponent implements OnInit {
   loadLocations(): void {
     this.locationService.getLocations().subscribe(
       (data) => {
-        this.locations = data['$values']; // Assuming the API returns an array of locations
+        this.locations = data; // Assuming the API returns an array of locations
         console.log(data);
       },
       (error) => {
@@ -51,7 +54,7 @@ export class LocationListComponent implements OnInit {
         error: (err) => {
           console.error('Error deleting location', err);
           alert('Failed to delete location');
-        }
+        },
       });
     }
   }

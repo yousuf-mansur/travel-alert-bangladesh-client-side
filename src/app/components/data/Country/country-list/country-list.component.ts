@@ -5,12 +5,17 @@ import { CommonModule, JsonPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
-
 @Component({
   selector: 'app-country-list',
   templateUrl: './country-list.component.html',
   styleUrls: ['./country-list.component.css'],
-  imports: [CommonModule,FormsModule,ReactiveFormsModule , JsonPipe, RouterLink],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    JsonPipe,
+    RouterLink,
+  ],
   standalone: true,
 })
 export class CountryListComponent implements OnInit {
@@ -24,12 +29,10 @@ export class CountryListComponent implements OnInit {
 
   loadCountries(): void {
     this.countryService.getCountries().subscribe((countries: any) => {
-      this.countries = countries.$values;
+      this.countries = countries;
       console.log(countries);
-      
     });
   }
-
 
   deleteCountry(id: number): void {
     if (confirm('Are you sure you want to delete this country?')) {

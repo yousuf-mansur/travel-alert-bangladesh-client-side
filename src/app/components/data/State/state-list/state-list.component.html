@@ -1,27 +1,26 @@
 <p>state-list works!</p>
 
 <div class="container">
-    <h2>State List</h2>
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>country Name</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let state of states">
-          <td>{{ state.stateID }}</td>
-          <td>{{ state.stateName }}</td>
-          <td>{{ state.countryName }}</td>
-          <td>
-            <a [routerLink]="['/api/states/edit', state.stateID]" class="btn btn-primary">Edit</a>
-            <button class="btn btn-danger" (click)="deleteState(state.stateID)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+  <h2>State List</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>country Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let state of states">
+        <td>{{ state.stateID }}</td>
+        <td>{{ state.stateName }}</td>
+        <td>{{ state.countryName }}</td>
+        <td>
+          <a [routerLink]="['edit', state.stateID]" class="btn btn-outline-primary btn-sm ">Edit</a>
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteState(state.stateID)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

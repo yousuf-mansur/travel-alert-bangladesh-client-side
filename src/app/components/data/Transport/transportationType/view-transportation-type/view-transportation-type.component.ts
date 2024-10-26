@@ -10,12 +10,12 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './view-transportation-type.component.html',
-  styleUrls: ['./view-transportation-type.component.css'] // Corrected here
+  styleUrls: ['./view-transportation-type.component.css'], // Corrected here
 })
 export class ViewTransportationTypesComponent implements OnInit {
   types: TransportationTypeOutputModel[] = [];
 
-  constructor(private service: TransportationTypeService) { }
+  constructor(private service: TransportationTypeService) {}
 
   ngOnInit(): void {
     this.loadTypes();
@@ -23,16 +23,16 @@ export class ViewTransportationTypesComponent implements OnInit {
 
   loadTypes() {
     this.service.getAllTypes().subscribe({
-      next: (response:any)=> {
+      next: (response: any) => {
         if (response.success) {
-          this.types = response.data.$values;
-          console.log(response)
+          this.types = response.data;
+          console.log(response);
         }
       },
-      error: error => {
+      error: (error) => {
         console.error('Error fetching transportation types');
         // Add user feedback here if necessary
-      }
+      },
     });
   }
 }

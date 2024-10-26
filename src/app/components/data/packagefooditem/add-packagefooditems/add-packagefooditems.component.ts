@@ -12,73 +12,80 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-add-packagefooditems',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './add-packagefooditems.component.html',
-  styleUrl: './add-packagefooditems.component.css'
+  styleUrl: './add-packagefooditems.component.css',
 })
 export class AddPackagefooditemsComponent implements OnInit {
-  mealTypes: any[] = []; 
-  foodItems: any[] = []; 
+  mealTypes: any[] = [];
+  foodItems: any[] = [];
   packageFoodItems: any[] = [];
 
-  newFoodItem: any = { 
+  newFoodItem: any = {
     mealTypeID: 0,
     foodItemID: 0,
     packageID: 0,
     packageDayNumber: 0,
     foodQuantity: 0,
     foodUnitPrice: 0,
-    scheduleTime: new Date()
+    scheduleTime: new Date(),
   };
 
-  packageID: number = 0; 
+  packageID: number = 0;
   ide: any;
 
   constructor(
     private mealTypeService: MealTypeService,
     private foodItemsService: FoodItemsService,
     private packageFoodItemService: PackageFoodItemsService,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private navig: Router
   ) {}
 
   ngOnInit(): void {
-    this.getMealTypes(); 
-    this.getAllFoodItems(); 
+    this.getMealTypes();
+    this.getAllFoodItems();
     this.ide = this.route.snapshot.paramMap.get('id');
     this.LoadFoodItems();
-  }  
+  }
 
   LoadFoodItems(): void {
-    this.packageFoodItemService.getPackageFoodItems(this.ide).subscribe((res: any) => {
-      console.log('response', res);
-      this.packageFoodItems = res.foodItems.$values;
-    });
+    this.packageFoodItemService
+      .getPackageFoodItems(this.ide)
+      .subscribe((res: any) => {
+        console.log('response', res);
+        this.packageFoodItems = res.foodItems;
+      });
   }
 
   addPackageFoodItem(): void {
-    if (this.newFoodItem.mealTypeID === 0 || this.newFoodItem.foodItemID === 0) {
+    if (
+      this.newFoodItem.mealTypeID === 0 ||
+      this.newFoodItem.foodItemID === 0
+    ) {
       alert('Meal Type ID and Food Item ID cannot be null');
       return;
     }
 
     this.newFoodItem.packageID = this.ide;
-    this.packageFoodItemService.addPackageFoodItem(this.newFoodItem, this.ide).subscribe(
-      (response: any) => {
-        console.log(response);
+    this.packageFoodItemService
+      .addPackageFoodItem(this.newFoodItem, this.ide)
+      .subscribe(
+        (response: any) => {
+          console.log(response);
 
-        if (response.success) {
-          alert('Package food item added successfully');
-          this.LoadFoodItems();
-          this.resetForm();
-        } else {
-          alert('Error: ' + response.message);
+          if (response.success) {
+            alert('Package food item added successfully');
+            this.LoadFoodItems();
+            this.resetForm();
+          } else {
+            alert('Error: ' + response.message);
+          }
+        },
+        (error) => {
+          console.error('Error adding package food item:', error);
         }
-      },
-      error => {
-        console.error('Error adding package food item:', error);
-      }
-    );
+      );
   }
 
   SaveExit(): void {
@@ -94,13 +101,13 @@ export class AddPackagefooditemsComponent implements OnInit {
       packageDayNumber: 0,
       foodQuantity: 0,
       foodUnitPrice: 0,
-      scheduleTime: new Date()
+      scheduleTime: new Date(),
     };
   }
 
   getMealTypes(): void {
     this.mealTypeService.getMealTypes().subscribe((response: any) => {
-      this.mealTypes = response.$values; // Map to the $values array
+      this.mealTypes = response; // Map to the $values array
       console.log('res', this.mealTypes);
     });
   }
@@ -108,23 +115,18 @@ export class AddPackagefooditemsComponent implements OnInit {
   getAllFoodItems(): void {
     this.foodItemsService.getAllFoodItems().subscribe((response: any) => {
       console.log(response); // Log the response to check the structure
-      this.foodItems = response.$values; // Map the response to $values if applicable
+      this.foodItems = response; // Map the response to $values if applicable
     });
   }
 
   getMealTypeName(mealTypeID: number): string {
-    const mealType = this.mealTypes.find(mt => mt.mealTypeID === mealTypeID);
+    const mealType = this.mealTypes.find((mt) => mt.mealTypeID === mealTypeID);
     return mealType ? mealType.typeName : 'Unknown';
   }
 
   // Method to get food item name by ID
   getFoodItemName(foodItemID: number): string {
-    const foodItem = this.foodItems.find(fi => fi.foodItemID === foodItemID);
+    const foodItem = this.foodItems.find((fi) => fi.foodItemID === foodItemID);
     return foodItem ? foodItem.itemName : 'Unknown';
   }
 }
-
-
-
-
-

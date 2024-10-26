@@ -7,9 +7,9 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-state-list',
   standalone: true,
-  imports: [CommonModule, RouterLink,JsonPipe],
+  imports: [CommonModule, RouterLink, JsonPipe],
   templateUrl: './state-list.component.html',
-  styleUrl: './state-list.component.css'
+  styleUrl: './state-list.component.css',
 })
 export class StateListComponent implements OnInit {
   states: any[] = [];
@@ -21,10 +21,9 @@ export class StateListComponent implements OnInit {
   }
 
   loadStates(): void {
-    this.stateService.getStates().subscribe((states:any) => {
-      this.states = states.$values;
+    this.stateService.getStates().subscribe((states: any) => {
+      this.states = states;
       console.log(states);
-      
     });
   }
 

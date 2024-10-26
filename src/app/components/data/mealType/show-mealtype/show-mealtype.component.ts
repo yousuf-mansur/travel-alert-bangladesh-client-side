@@ -8,11 +8,10 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-show-mealtype',
   standalone: true,
-  imports: [CommonModule, FormsModule,RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './show-mealtype.component.html',
-  styleUrls: ['./show-mealtype.component.css'] 
+  styleUrls: ['./show-mealtype.component.css'],
 })
-
 export class ShowMealtypeComponent implements OnInit {
   mealTypes: MealType[] = [];
   newMealType: MealType = { mealTypeID: 0, typeName: '' };
@@ -26,14 +25,16 @@ export class ShowMealtypeComponent implements OnInit {
 
   getMealTypes(): void {
     this.mealTypeService.getMealTypes().subscribe((response: any) => {
-      this.mealTypes = response.$values;  // Map to the $values array
+      this.mealTypes = response; // Map to the $values array
     });
   }
 
   // Delete a meal type
   deleteMealType(id: number): void {
     this.mealTypeService.deleteMealType(id).subscribe(() => {
-      this.mealTypes = this.mealTypes.filter((mealType) => mealType.mealTypeID !== id);
+      this.mealTypes = this.mealTypes.filter(
+        (mealType) => mealType.mealTypeID !== id
+      );
     });
   }
 }

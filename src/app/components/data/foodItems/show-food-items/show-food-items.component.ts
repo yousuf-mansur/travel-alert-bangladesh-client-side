@@ -19,9 +19,8 @@ export class ShowFoodItemsComponent implements OnInit {
   newFoodItem: FoodItem = {
     foodItemID: 0,
     itemName: '',
-   createdAt: new Date(),
-   updatedAt:new Date()
-
+    createdAt: new Date(),
+    updatedAt: new Date(),
   };
   selectedFoodItem?: FoodItem;
 
@@ -35,7 +34,7 @@ export class ShowFoodItemsComponent implements OnInit {
   getAllFoodItems(): void {
     this.foodItemsService.getAllFoodItems().subscribe((response: any) => {
       console.log(response); // Log the response to check the structure
-      this.foodItems = response.$values; // Map the response to $values if applicable
+      this.foodItems = response; // Map the response to $values if applicable
     });
   }
 
