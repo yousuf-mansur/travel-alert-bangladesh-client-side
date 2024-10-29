@@ -48,17 +48,11 @@ This repository contains the client-side implementation of the Travel Alert Bang
    ng serve
    ```
 
-   OR, for the React front-end:
-
-   ```bash
-   npm start
-   ```
 
 2. The application will be accessible at:
 
    ```url
    http://localhost:4200/  (Angular)
-   http://localhost:3000/  (React)
    ```
 
 ## Project Structure
@@ -74,7 +68,6 @@ This repository contains the client-side implementation of the Travel Alert Bang
 The following npm packages are used for client-side development:
 
 - **Angular CLI 18**
-- **React 18**
 - **TypeScript**
 - **Bootstrap**
 
