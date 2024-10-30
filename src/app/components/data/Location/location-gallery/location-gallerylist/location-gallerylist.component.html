@@ -1,5 +1,5 @@
 <!-- Add Gallery Button -->
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center mb-4">
   <h3 class="mb-0">Location Galleries</h3>
   <a routerLink="/LocationGallery/add" class="btn btn-success">
     <i class="bi bi-plus-lg"></i> Add Gallery
@@ -7,7 +7,7 @@
 </div>
 
 <!-- Dropdown for selecting location -->
-<div class="mb-2">
+<div class="mb-3">
   <label for="locationSelect" class="form-label">Select Location:</label>
   <select id="locationSelect" [(ngModel)]="selectedLocationId" class="form-select">
     <option [value]="0" disabled>Select a location</option>
@@ -18,34 +18,61 @@
 </div>
 
 <!-- Button to load galleries for the selected location -->
-<button class="btn btn-primary" (click)="getGalleriesByLocationId()">Load Galleries</button>
+<div class="mb-4">
+  <button class="btn btn-primary" (click)="getGalleriesByLocationId()">
+    <i class="bi bi-arrow-clockwise"></i> Load Galleries
+  </button>
+</div>
 
 <!-- Gallery List -->
-<div *ngIf="locationGalleries.length > 0; else noGalleries">
-  <ul class="list-unstyled mt-3">
-    <li *ngFor="let gallery of locationGalleries" class="mb-3">
-      <img [src]="gallery.imageUrl" alt="{{gallery.imageCaption}}" width="150" class="me-3" />
-      <div class="d-inline-block">
-        <p class="mb-1">{{gallery.imageCaption}}</p>
+<div *ngIf="locationGalleries.length > 0; else noGalleries" class="row">
+  <div class="col-12">
+    <ul class="list-unstyled mt-3">
+      <li *ngFor="let gallery of locationGalleries" class="mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div class="me-3">
+              <!-- Image display with fallback -->
+              <img *ngIf="gallery.imageUrl" [src]="getFullImageUrl(gallery.imageUrl)" alt="Location Image"
+                class="img-thumbnail" style="max-width: 100px; max-height: 100px;" (error)="gallery.imageUrl = ''">
 
-        <!-- Edit Button -->
-        <a 
-          [routerLink]="['/LocationGallery/edit', gallery.locationGalleryID]" 
-          class="btn btn-outline-primary btn-sm me-2"
-        >
-          <i class="bi bi-pencil"></i> Edit
-        </a>
+              <!-- Fallback message when image fails to load -->
+              <div *ngIf="!gallery.imageUrl" class="text-muted">
+                Image not available
+              </div>
+            </div>
+            <div>
+              <p class="mb-1 text-muted">Location: {{ getLocationName(gallery.locationID) }}</p>
+            </div>
+            <div>
+              <p class="mb-1 text-muted">Image Caption: {{ gallery.imageCaption }}</p>
+            </div>
 
-        <!-- Delete Button -->
-        <button class="btn btn-danger btn-sm" (click)="onDelete(gallery.locationGalleryID)">
-          <i class="bi bi-trash"></i> Delete
-        </button>
-      </div>
-    </li>
-  </ul>
+            <div class="text-end">
+              <!-- Is Primary Indicator -->
+              <span class="badge me-2" [ngClass]="gallery.isPrimary ? 'bg-success' : 'bg-danger'">
+                {{ gallery.isPrimary ? 'Primary' : 'Not Primary' }}
+              </span>
+
+              <!-- Edit Button -->
+              <a [routerLink]="['/LocationGallery/edit', gallery.locationGalleryID]"
+                class="btn btn-outline-primary btn-sm me-2">
+                <i class="bi bi-pencil"></i> Edit
+              </a>
+
+              <!-- Delete Button -->
+              <button class="btn btn-outline-danger btn-sm" (click)="onDelete(gallery.locationGalleryID)">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <!-- Template for no galleries found -->
 <ng-template #noGalleries>
-  <p>No galleries available for this location.</p>
+  <p class="text-muted text-center">No galleries available for this location.</p>
 </ng-template>

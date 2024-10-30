@@ -1,0 +1,45 @@
+.gallery-form {
+  background: #f0f4f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1100px;
+  margin: auto;
+}
+
+.form-label {
+  color: #4a5568;
+  font-weight: bold;
+}
+
+.custom-input,
+.custom-select {
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #cbd5e0;
+}
+
+.custom-button {
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+.custom-button.btn-primary {
+  background-color: #4a90e2;
+  border: none;
+}
+
+.custom-button.btn-success {
+  background-color: #38a169;
+  border: none;
+}
+
+.image-preview {
+  margin-left: 20px;
+}
+
+.preview-img {
+  max-width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

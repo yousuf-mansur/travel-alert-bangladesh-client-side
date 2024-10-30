@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  ReactiveFormsModule,
+  FormsModule,
+} from '@angular/forms';
 
 import { LocationGalleryService } from '../../../../../services/Location/location-gallery.service';
 import { CommonModule } from '@angular/common';
@@ -7,18 +13,17 @@ import { Router, RouterLink } from '@angular/router';
 import { LocationService } from '../../../../../services/Location/location.service';
 import { LocationGalleryInsertModel } from '../../../../../models/Location model/LocationGalleryInsertModel';
 
-
 @Component({
   selector: 'app-add-location-gallery',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,FormsModule,RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterLink],
   templateUrl: './add-location-gallery.component.html',
-  styleUrls: ['./add-location-gallery.component.css']
-
+  styleUrls: ['./add-location-gallery.component.css'],
 })
 export class AddLocationGalleryComponent implements OnInit {
   galleryForm: FormGroup;
   selectedFile: File | null = null;
+  imagePreviewUrl: string | ArrayBuffer | null = null;
   locations: any[] = []; // Array to hold locations
   isEditMode: boolean = false;
   editGalleryId: number | null = null;
@@ -27,13 +32,13 @@ export class AddLocationGalleryComponent implements OnInit {
     private fb: FormBuilder,
     private locationGalleryService: LocationGalleryService,
     private locationService: LocationService,
-    private navi:Router // Inject LocationService
+    private navi: Router // Inject LocationService
   ) {
     this.galleryForm = this.fb.group({
       isPrimary: [false, Validators.required],
       imageCaption: ['', Validators.required],
-      locationID: [null, Validators.required], // The dropdown will bind to locationID
-      imageFile: [null, Validators.required]
+      locationID: ['', Validators.required], // The dropdown will bind to locationID
+      imageFile: [null, Validators.required],
     });
   }
 
@@ -49,34 +54,54 @@ export class AddLocationGalleryComponent implements OnInit {
     if (event.target.files.length > 0) {
       this.selectedFile = event.target.files[0];
       this.galleryForm.patchValue({
-        imageFile: this.selectedFile
+        imageFile: this.selectedFile,
       });
+
+      // Create an image preview URL only if selectedFile is not null
+      if (this.selectedFile) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imagePreviewUrl = reader.result;
+        };
+        reader.readAsDataURL(this.selectedFile);
+      }
     }
   }
 
   submitGallery(): void {
+    if (!this.selectedFile) {
+      alert('Please select an image file.');
+      return;
+    }
+
     const galleryModel: LocationGalleryInsertModel = {
       isPrimary: this.galleryForm.get('isPrimary')?.value,
-      imageCaption: this.galleryForm.get('imageCaption')?.value,
-      locationID: this.galleryForm.get('locationID')?.value, // Location ID will be submitted
-      imageFile: this.selectedFile
+      imageCaption:
+        this.galleryForm.get('imageCaption')?.value?.toString() || '', // Use .toString() carefully
+      locationID: this.galleryForm.get('locationID')?.value,
+      imageFile: this.selectedFile,
     };
 
     if (this.isEditMode && this.editGalleryId) {
-      // Update existing gallery
-      this.locationGalleryService.updateGallery(this.editGalleryId, galleryModel).subscribe((res:any) => {
-        alert('Gallery updated successfully');
-        console.log(res);
-        this.navi.navigateByUrl(res.requestUrl)
-        this.resetForm();
-      });
+      this.locationGalleryService
+        .updateGallery(this.editGalleryId, galleryModel)
+        .subscribe(
+          (res: any) => {
+            alert('Gallery updated successfully');
+            this.navi.navigateByUrl(res.requestUrl);
+            this.resetForm();
+          },
+          (error) => console.error('Update failed:', error)
+        );
     } else {
-      // Add new gallery
-      this.locationGalleryService.addGallery(galleryModel).subscribe((res:any) => {
-        alert('Gallery added successfully');
-        this.resetForm();
-        this.navi.navigateByUrl(res.requestUrl)
-      });
+      this.locationGalleryService.addGallery(galleryModel).subscribe(
+        (res: any) => {
+          alert('Gallery added successfully');
+          this.navi.navigateByUrl(res.requestUrl);
+          this.resetForm();
+        },
+        (error) => console.error('Add failed:', error)
+      );
     }
   }
 
@@ -87,11 +112,10 @@ export class AddLocationGalleryComponent implements OnInit {
     this.galleryForm.reset();
   }
 
-
   loadLocations(): void {
     this.locationService.getLocations().subscribe(
       (data) => {
-        this.locations = data['$values']; // Assuming the API returns an array of locations
+        this.locations = data; // Assuming the API returns an array of locations
         console.log(data);
       },
       (error) => {

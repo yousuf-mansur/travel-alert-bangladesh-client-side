@@ -1,0 +1,34 @@
+.container {
+  background: linear-gradient(to bottom right, #f9f9f9, #e9ecef);
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-outline-success {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
