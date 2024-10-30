@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { LocationGalleryService } from '../../../../../services/Location/location-gallery.service';
 import { CommonModule } from '@angular/common';
@@ -10,54 +10,85 @@ import { LocationGallery } from '../../../../../models/Location model/LocationGa
 @Component({
   selector: 'app-location-gallerylist',
   standalone: true,
-  imports: [CommonModule, FormsModule,RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './location-gallerylist.component.html',
-  styleUrls: ['./location-gallerylist.component.css'] // Corrected styleUrls typo
+  styleUrls: ['./location-gallerylist.component.css'], // Corrected styleUrls typo
 })
 export class LocationGallerylistComponent implements OnInit {
+  @Input() apiBaseUrl: string = 'http://localhost:5148'; // API base URL for images
+  @Output() fileSelected = new EventEmitter<File>(); // Emit selected file for upload
+  selectedFile!: File;
+
   locationGalleries: LocationGallery[] = [];
   locations: any[] = []; // Store locations for the dropdown
   selectedLocationId: number = 0; // Selected location ID
   imageUrl: string = ''; // Image URL
-  backendUrl: string = 'http://localhost:5141'; // Backend URL
 
   constructor(
     private locationGalleryService: LocationGalleryService,
-    private locationService: LocationService // Inject LocationService
+    private locationService: LocationService
   ) {}
 
   ngOnInit(): void {
-    this.loadLocations(); // Load locations when component initializes
+    this.loadLocations();
+    this.getLocationName;
+    // Load locations when component initializes
   }
 
-  // // Load all locations from the service
-  // loadLocations(): void {
-  //   this.locationService.getLocations().subscribe((locations) => {
-  //     this.locations = locations; // Store the fetched locations
-  //   });
-  // }
+  // Generate full image URL
+  getFullImageUrl(locationGalleryUrl: string): string {
+    if (!locationGalleryUrl) return '';
+
+    // Replace backslashes with forward slashes
+    const normalizedUrl = locationGalleryUrl.replace(/\\/g, '/');
+
+    // Check if the URL is already absolute
+    if (normalizedUrl.startsWith('http')) {
+      return normalizedUrl;
+    }
+
+    // Remove leading slash if present to avoid double slashes
+    const cleanPath = normalizedUrl.startsWith('/')
+      ? normalizedUrl.slice(1)
+      : normalizedUrl;
+    return `${this.apiBaseUrl}/${cleanPath}`;
+  }
+
+  // Handle file selection for uploading voucher file
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+      this.fileSelected.emit(this.selectedFile);
+    }
+  }
 
   // Fetch galleries based on the selected location ID
   getGalleriesByLocationId(): void {
     if (this.selectedLocationId > 0) {
-      this.locationGalleryService.getGalleriesByLocationId(this.selectedLocationId).subscribe(response => {
-        console.log('API Response:', response);
-  
-        if (response.$values && Array.isArray(response.$values)) {
-          this.locationGalleries = response.$values;
-  
-          if (this.locationGalleries.length > 0 && this.locationGalleries[0].imageUrl) {
-            const imageFileName = this.locationGalleries[0].imageUrl;
-            this.imageUrl = `${this.backendUrl}${imageFileName}`;
+      this.locationGalleryService
+        .getGalleriesByLocationId(this.selectedLocationId)
+        .subscribe((response) => {
+          console.log('API Response:', response);
+
+          if (response && Array.isArray(response)) {
+            this.locationGalleries = response;
+
+            if (
+              this.locationGalleries.length > 0 &&
+              this.locationGalleries[0].imageUrl
+            ) {
+              const imageFileName = this.locationGalleries[0].imageUrl;
+              console.log('Image URL:', this.getFullImageUrl(imageFileName));
+              this.imageUrl = this.getFullImageUrl(imageFileName);
+            } else {
+              console.log('No imageUrl found in the response.');
+              this.imageUrl = '';
+            }
           } else {
-            console.log('No imageUrl found in the response.');
-            this.imageUrl = '';
+            console.log('No galleries found for this location.');
+            this.locationGalleries = [];
           }
-        } else {
-          console.log('No galleries found for this location.');
-          this.locationGalleries = [];
-        }
-      });
+        });
     } else {
       console.error('Invalid Location ID');
     }
@@ -73,10 +104,11 @@ export class LocationGallerylistComponent implements OnInit {
     }
   }
 
+  // Load all locations from the service
   loadLocations(): void {
     this.locationService.getLocations().subscribe(
       (data) => {
-        this.locations = data['$values']; // Assuming the API returns an array of locations
+        this.locations = data; // Assuming the API returns an array of locations
         console.log(data);
       },
       (error) => {
@@ -84,7 +116,10 @@ export class LocationGallerylistComponent implements OnInit {
       }
     );
   }
-
+  getLocationName(locationID: number): string {
+    const location = this.locations.find(
+      (loc) => loc.locationID === locationID
+    );
+    return location ? location.locationName : 'Unknown Location';
+  }
 }
- 
-

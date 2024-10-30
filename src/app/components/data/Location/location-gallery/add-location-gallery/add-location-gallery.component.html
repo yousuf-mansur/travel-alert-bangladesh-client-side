@@ -1,7 +1,7 @@
-<form [formGroup]="galleryForm" (ngSubmit)="submitGallery()">
+<form [formGroup]="galleryForm" (ngSubmit)="submitGallery()" class="gallery-form">
   <div class="mb-3">
     <label for="isPrimary" class="form-label">Is Primary:</label>
-    <select id="isPrimary" class="form-select" formControlName="isPrimary">
+    <select id="isPrimary" class="form-select custom-select" formControlName="isPrimary">
       <option [value]="true">Yes</option>
       <option [value]="false">No</option>
     </select>
@@ -9,30 +9,40 @@
 
   <div class="mb-3">
     <label for="imageCaption" class="form-label">Image Caption:</label>
-    <input type="text" id="imageCaption" class="form-control" placeholder="Enter image caption"
-      formControlName="imageCaption">
+    <input type="text" id="imageCaption" class="form-control custom-input" placeholder="Enter image caption"
+      formControlName="imageCaption" />
   </div>
 
   <div class="mb-3">
-    <label for="locationID" class="form-label">Location:</label>
-    <select id="locationID" class="form-select" formControlName="locationID">
+    <label for="locationID" class="form-label">Location :</label>
+    <select id="locationID" class="form-select custom-select" formControlName="locationID">
+      <option value="" disabled>Select Location</option>
       <option *ngFor="let location of locations" [value]="location.locationID">
         {{ location.locationName }}
       </option>
     </select>
   </div>
 
-  <div class="mb-3">
-    <label for="imageFile" class="form-label">Image File:</label>
-    <input type="file" id="imageFile" class="form-control" (change)="onFileSelected($event)">
+  <div class="d-flex align-items-start">
+    <!-- File Upload with Image Preview -->
+    <div class="mb-3">
+      <label for="imageFile" class="form-label">Image File:</label>
+      <input type="file" id="imageFile" class="form-control custom-input" (change)="onFileSelected($event)" />
+    </div>
+
+    <!-- Image Preview -->
+    <div *ngIf="imagePreviewUrl" class="image-preview">
+      <label class="form-label">Image Preview:</label>
+      <img [src]="imagePreviewUrl" alt="Selected Image" class="img-thumbnail preview-img" />
+    </div>
   </div>
 
-  <div class="d-grid gap-2">
-    <button type="submit" class="btn btn-primary btn-lg">
+  <div class="d-grid gap-2 mt-4">
+    <button type="submit" class="btn btn-primary btn-lg custom-button">
       {{ isEditMode ? 'Update Gallery' : 'Add Gallery' }}
     </button>
 
-    <a routerLink="/locationGallery" class="btn btn-success btn-lg">
+    <a routerLink="/LocationGallery" class="btn btn-success btn-lg custom-button">
       Back to Gallery
     </a>
   </div>

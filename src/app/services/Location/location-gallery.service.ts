@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocationGalleryResponse } from '../../models/Location model/LocationGalleryResponse ';
@@ -9,9 +9,10 @@ import { LocationGalleryInsertModel } from '../../models/Location model/Location
   providedIn: 'root',
 })
 export class LocationGalleryService {
+
   private apiUrl = 'http://localhost:5148/api/LocationGallery'; // Base API URL
 
-  // http://localhost:5141/api/LocationGallery/locationGallery/1
+
 
   constructor(private http: HttpClient) {}
 
@@ -56,6 +57,8 @@ export class LocationGalleryService {
     ); // Updated URL
   }
 
+
+
   // Delete gallery
   deleteGallery(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`); // Updated URL
@@ -65,4 +68,14 @@ export class LocationGalleryService {
   getLocations(): Observable<any> {
     return this.http.get(`${this.apiUrl}`);
   }
+
+
+
+  // Get a single gallery by gallery ID
+getGalleryById(galleryId: number): Observable<LocationGallery> {
+  return this.http.get<LocationGallery>(`${this.apiUrl}/${galleryId}`);
 }
+
+}
+
+

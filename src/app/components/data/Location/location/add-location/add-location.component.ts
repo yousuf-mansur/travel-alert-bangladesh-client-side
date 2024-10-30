@@ -11,50 +11,62 @@ import { StateService } from '../../../../../services/State/state.service';
 @Component({
   selector: 'app-add-location',
   standalone: true,
-  imports: [CommonModule,RouterLink,FormsModule, JsonPipe],
+  imports: [CommonModule, RouterLink, FormsModule, JsonPipe],
   templateUrl: './add-location.component.html',
-  styleUrl: './add-location.component.css'
+  styleUrl: './add-location.component.css',
 })
 export class AddLocationComponent implements OnInit {
-  location: LocationInsertModel = { locationName: '', locationDescription: '', stateID: 0 };
-  state : any[] =[]
+  location: LocationInsertModel = {
+    locationName: '',
+    locationDescription: '',
+    stateID: '' as any,
+  };
+  state: any[] = [];
 
-  constructor(private stateSer : StateService,
-    private locationService: LocationService, private http : HttpClient , private navi : Router) {}
-
+  constructor(
+    private stateSer: StateService,
+    private locationService: LocationService,
+    private http: HttpClient,
+    private navi: Router
+  ) {}
 
   ngOnInit(): void {
-    this.getState()
+    this.getState();
   }
 
-
-  getState(){
-    this.stateSer.getStates().subscribe((res: any) => {
-      console.log(res); // Log the entire response to verify
-      // Check if the response is already an array
-      if (Array.isArray(res)) {
-        this.state = res; // Directly assign if it is an array
-      } else if (res.$values) {
-        this.state = res.$values; // Use $values if it exists
+  getState() {
+    this.stateSer.getStates().subscribe(
+      (res: any) => {
+        console.log(res); // Log the entire response to verify
+        // Check if the response is already an array
+        if (Array.isArray(res)) {
+          this.state = res; // Directly assign if it is an array
+        } else if (res) {
+          this.state = res; // Use $values if it exists
+        }
+      },
+      (error) => {
+        console.error('Error fetching states', error);
       }
-    }, (error) => {
-      console.error('Error fetching states', error);
-    });
+    );
   }
-  
 
   addLocation() {
+    this.location.stateID = Number(this.location.stateID);
     this.locationService.addLocation(this.location).subscribe({
       next: (response) => {
         console.log('Location added successfully', response);
-        this.location = { locationName: '', locationDescription: '', stateID: 0 };
-        alert('Location added successfully!');  
-        this.navi.navigateByUrl(response.requestUrl)
+        this.location = {
+          locationName: '',
+          locationDescription: '',
+          stateID: null,
+        };
+        alert('Location added successfully!');
+        this.navi.navigateByUrl(response.requestUrl);
       },
       error: (err) => {
         console.error('Error adding location', err);
-      }
+      },
     });
   }
-  
 }
